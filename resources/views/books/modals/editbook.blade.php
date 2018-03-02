@@ -40,10 +40,10 @@
                   <label for="series" class="col-sm-2 col-form-label">Series</label>
                   <div class="col-sm-10">
                       <select class="form-control" name="series" id="series">
-                        <option selected>Choose...</option>
-                        <option>Harry porter series</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected disabled>-Select Series-</option>
+                        @foreach($allseries as $series)
+                        <option>{{$series->name}}</option>
+                        @endforeach
                       </select>
                   </div>
               </div>
@@ -52,10 +52,10 @@
                   <label for="publisher" class="col-sm-2 col-form-label">Publisher</label>
                   <div class="col-sm-10">
                       <select class="form-control" name="publisher" id="publisher">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected disabled>-Select Publisher-</option>
+                        @foreach($publishers as $publisher)
+                        <option>{{$publisher->name}}</option>
+                        @endforeach
                       </select>
                   </div>
               </div>
@@ -63,11 +63,11 @@
               <div class="form-group row">
                   <label for="author" class="col-sm-2 col-form-label">Author</label>
                   <div class="col-sm-10">
-                      <select class="form-control" name="author" id="author">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select class="form-control" name="author_id" id="author">
+                        <option selected disabled>-Select Author-</option>
+                        @foreach($authors as $author)
+                        <option value="{{$author->id}}">{{$author->name}}</option>
+                        @endforeach
                       </select>
                   </div>
               </div>
@@ -76,10 +76,10 @@
                   <label for="genre" class="col-sm-2 col-form-label">Genre</label>
                   <div class="col-sm-10">
                       <select class="form-control" name="genre" id="genre">
-                        <option selected disabled>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected disabled>-Select Genre-</option>
+                        @foreach($genres as $genre)
+                        <option>{{$genre->name}}</option>
+                        @endforeach
                       </select>
                   </div>
               </div>
@@ -87,12 +87,7 @@
               <div class="form-group row">
                   <label for="edition" class="col-sm-2 col-form-label">Edition</label>
                   <div class="col-sm-10">
-                      <select class="form-control" name="edition" id="edition">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                      <input type="text" name="edition" class="form-control" id="edition">
                   </div>
               </div>
 
@@ -114,10 +109,10 @@
                   <label for="binding" class="col-sm-2 col-form-label">Binding</label>
                   <div class="col-sm-10">
                       <select class="form-control" name="binding" id="binding">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected disabled>-Select Binding-</option>
+                        <option>Softcover</option>
+                        <option>Hardcover</option>
+                        <option>Paperback</option>
                       </select>
                   </div>
               </div>
@@ -139,11 +134,11 @@
               <div class="form-group row">
                   <label for="language" class="col-sm-2 col-form-label">Language</label>
                   <div class="col-sm-10">
-                      <select class="form-control" name="language" id="language">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-control" name="language" id="language">
+                        <option selected disabled>-Select Language-</option>
+                        @foreach($languages as $language)
+                        <option>{{$language->name}}</option>
+                        @endforeach
                       </select>
                   </div>
               </div>

@@ -20,14 +20,14 @@ class CreateBooksTable extends Migration
             $table->bigInteger('ISBN')->unsigned();
             $table->string('series')->nullable();
             $table->string('publisher');
-            $table->string('author');
+            $table->integer('author_id')->unsigned();
             $table->string('genre');
             $table->string('edition')->nullable();
             $table->year('published_year');
-            $table->integer('pages')->unsigned();;
+            $table->integer('pages')->unsigned();
             $table->string('binding');
-            $table->integer('quantity')->unsigned();;
-            $table->integer('price')->unsigned();;
+            $table->integer('quantity')->unsigned();
+            $table->float('price', 8, 2);
             $table->string('language');
             $table->text('description');
             $table->string('image');

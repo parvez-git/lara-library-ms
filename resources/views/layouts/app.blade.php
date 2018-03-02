@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fa-svg-with-js.css') }}" rel="stylesheet">
     <link href="{{ asset('css/summernote.css') }}" rel="stylesheet">
 
@@ -73,9 +72,14 @@
 
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item active">Books</li>
+                                    <li class="list-group-item">Books</li>
                                     <li class="list-group-item"><a href="{{route('books.index')}}">All Book</a></li>
-                                    <li class="list-group-item"><a href="{{route('books.create')}}">Create Book</a></li>
+                                    <li class="list-group-item"><a href="{{route('authors.index')}}">Authors</a></li>
+                                    <li class="list-group-item"><a href="{{route('countries.index')}}">Countries</a></li>
+                                    <li class="list-group-item"><a href="{{route('languages.index')}}">Languages</a></li>
+                                    <li class="list-group-item"><a href="{{route('series.index')}}">Series</a></li>
+                                    <li class="list-group-item"><a href="{{route('publishers.index')}}">Publishers</a></li>
+                                    <li class="list-group-item"><a href="{{route('genres.index')}}">Genres</a></li>
                                 </ul>
                             </div>
                         </div>

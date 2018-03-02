@@ -21,7 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::resource('books','BooksController');
+Route::resource('authors','AuthorsController');
+Route::resource('countries','CountriesController');
+Route::resource('languages','LanguagesController');
+Route::resource('series','SeriesController');
+Route::resource('publishers','PublishersController');
+Route::resource('genres','GenresController');
+
 
 Route::group(['middleware' => ['web','roles'], 'roles'=>['Admin']], function () {
   Route::get('/home1', function(){

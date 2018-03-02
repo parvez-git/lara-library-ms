@@ -30,7 +30,7 @@
                         <td>
                           <h4>{{$book->title}}</h4>
                           Year: <strong>{{$book->published_year}}</strong> <br>
-                          Author: <strong>{{$book->author}}</strong> <br>
+                          Author: <strong>{{$book->author_id}}</strong> <br>
                           Genre: <strong>{{$book->genre}}</strong> <br>
                           Publisher: <strong>{{$book->publisher}}</strong> <br>
                         </td>
@@ -76,7 +76,7 @@
       $('#bookeditmodal #ISBN').val(data.book.ISBN);
       $('#bookeditmodal #series').val(data.book.series);
       $('#bookeditmodal #publisher').val(data.book.publisher);
-      $('#bookeditmodal #author').val(data.book.author);
+      $('#bookeditmodal #author').val(data.book.author_id);
       $('#bookeditmodal #genre').val(data.book.genre);
       $('#bookeditmodal #edition').val(data.book.edition);
       $('#bookeditmodal #published_year').val(data.book.published_year);
@@ -101,7 +101,7 @@
       $('#bookviewmodal #ISBN').html(data.book.ISBN);
       $('#bookviewmodal #series').html(data.book.series);
       $('#bookviewmodal #publisher').html(data.book.publisher);
-      $('#bookviewmodal #author').html(data.book.author);
+      $('#bookviewmodal #author').html(data.book.author_id);
       $('#bookviewmodal #genre').html(data.book.genre);
       $('#bookviewmodal #edition').html(data.book.edition);
       $('#bookviewmodal #published_year').html(data.book.published_year);

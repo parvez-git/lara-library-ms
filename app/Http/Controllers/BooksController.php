@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Book;
+use App\Author;
+use App\Language;
+use App\Series;
+use App\Publisher;
+use App\Genre;
 
 class BooksController extends Controller
 {
@@ -12,13 +17,12 @@ class BooksController extends Controller
     public function index()
     {
         $books = Book::latest()->get();
-        return view('books.index', compact('books'));
-    }
-
-
-    public function create()
-    {
-        return view('books.create');
+        $authors = Author::latest()->get();
+        $languages = Language::latest()->get();
+        $allseries = Series::latest()->get();
+        $publishers = Publisher::latest()->get();
+        $genres = Genre::latest()->get();
+        return view('books.index', compact('books','authors','languages','allseries','publishers','genres'));
     }
 
 

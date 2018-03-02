@@ -12,7 +12,7 @@ class Book extends Model
       'ISBN',
       'series',
       'publisher',
-      'author',
+      'author_id',
       'genre',
       'edition',
       'published_year',
