@@ -19,12 +19,8 @@
                         <th>Title</th>
                         <th>ISBN</th>
                         <th>Quantity</th>
-<<<<<<< HEAD
                         <th>Issued</th>
                         <th width="130px">Action</th>
-=======
-                        <th>Action</th>
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                       </tr>
                     </thead>
                     <tbody>
@@ -34,7 +30,6 @@
                         <td><img src="images/{{$book->image}}" alt="{{$book->title}}" class="rounded" width="80px"></td>
                         <td>
                           <h4>{{$book->title}}</h4>
-<<<<<<< HEAD
                           Year:       <strong>{{$book->published_year}}</strong> <br>
                           Author:     <strong>{{$book->author->name}}</strong> <br>
                           Publisher:  <strong>{{$book->publisher->name}}</strong> <br>
@@ -49,16 +44,6 @@
                         <td>{{$book->quantity}}</td>
                         <td>{{$book->issuedbooks_count}}</td>
                         <td class="text-center">
-=======
-                          Year: <strong>{{$book->published_year}}</strong> <br>
-                          Author: <strong>{{$book->author_id}}</strong> <br>
-                          Genre: <strong>{{$book->genre}}</strong> <br>
-                          Publisher: <strong>{{$book->publisher}}</strong> <br>
-                        </td>
-                        <td>{{$book->ISBN}}</td>
-                        <td>{{$book->quantity}}</td>
-                        <td>
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$book->id}}" id="bookview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$book->id}}" id="bookedit"><i class="fas fa-pencil-alt"></i></button>
                           <button type="button" class="btn btn-sm btn-danger" data-id="{{$book->id}}" id="bookdelete"><i class="fas fa-trash"></i></button>
@@ -85,7 +70,6 @@
 <script type="text/javascript">
 
   $(document).on('click', '#createbook', function(e){
-<<<<<<< HEAD
     e.preventDefault();
     $('#createbookmodal').modal('show');
   });
@@ -101,30 +85,12 @@
       $('#bookeditmodal #title').val(data.book.title);
       $('#bookeditmodal #subtitle').val(data.book.subtitle);
       $('#bookeditmodal #ISBN').val(data.book.ISBN);
-=======
-    $('#createbookmodal').modal('show');
-  });
-
-  // EDIT BOOK
-  $(document).on('click', '#bookedit', function(e){
-    $('#bookeditmodal').modal('show');
-    var book = $(this).data('id');
-    $.get('books/'+book+'/edit', function(data){
-      $('#bookeditmodal #title').val(data.book.title);
-      $('#bookeditmodal #subtitle').val(data.book.subtitle);
-      $('#bookeditmodal #ISBN').val(data.book.ISBN);
-      $('#bookeditmodal #series').val(data.book.series);
-      $('#bookeditmodal #publisher').val(data.book.publisher);
-      $('#bookeditmodal #author').val(data.book.author_id);
-      $('#bookeditmodal #genre').val(data.book.genre);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#bookeditmodal #edition').val(data.book.edition);
       $('#bookeditmodal #published_year').val(data.book.published_year);
       $('#bookeditmodal #pages').val(data.book.pages);
       $('#bookeditmodal #binding').val(data.book.binding);
       $('#bookeditmodal #quantity').val(data.book.quantity);
       $('#bookeditmodal #price').val(data.book.price);
-<<<<<<< HEAD
       $('#bookeditmodal #description').summernote('code', data.book.description);
       $('#bookeditmodal #bookimageeditpreview').attr('src','images/'+data.book.image);
       $('#bookeditmodal #bookimageeditpreview').attr('alt',data.book.title);
@@ -147,22 +113,12 @@
       });
       $('#bookeditmodal #genre').val(genre_arr);
       $('#bookeditmodal #genre').trigger('change');
-
-=======
-      $('#bookeditmodal #language').val(data.book.language);
-      $('#bookeditmodal #description').summernote('code', data.book.description);
-      $('#bookeditmodal #bookimageeditpreview').attr('src','images/'+data.book.image);
-      $('#bookeditmodal #bookimageeditpreview').attr('alt',data.book.title);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     });
   });
 
   // VIEW BOOK
   $(document).on('click', '#bookview', function(e){
-<<<<<<< HEAD
     e.preventDefault();
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     $('#bookviewmodal').modal('show');
     var book = $(this).data('id');
     $.get('books/'+book, function(data){
@@ -170,21 +126,14 @@
       $('#bookviewmodal #subtitle').html(data.book.subtitle);
       $('#bookviewmodal #ISBN').html(data.book.ISBN);
       $('#bookviewmodal #series').html(data.book.series);
-<<<<<<< HEAD
       $('#bookviewmodal #publisher').html(data.book.publisher.name);
       $('#bookviewmodal #author').html(data.book.author.name);
-=======
-      $('#bookviewmodal #publisher').html(data.book.publisher);
-      $('#bookviewmodal #author').html(data.book.author_id);
-      $('#bookviewmodal #genre').html(data.book.genre);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#bookviewmodal #edition').html(data.book.edition);
       $('#bookviewmodal #published_year').html(data.book.published_year);
       $('#bookviewmodal #pages').html(data.book.pages);
       $('#bookviewmodal #binding').html(data.book.binding);
       $('#bookviewmodal #quantity').html(data.book.quantity);
       $('#bookviewmodal #price').html(data.book.price);
-<<<<<<< HEAD
       $('#bookviewmodal #language').html(data.book.language.name);
       $('#bookviewmodal #description').html(data.book.description);
       $('#bookviewmodal #bookimageviewpreview').attr('src','images/'+data.book.image);
@@ -195,13 +144,6 @@
         genre_list += '<span class="badge badge-info">' + element.name + '</span>';
       });
       $('#bookviewmodal #genre').html(genre_list);
-
-=======
-      $('#bookviewmodal #language').html(data.book.language);
-      $('#bookviewmodal #description').html(data.book.description);
-      $('#bookviewmodal #bookimageviewpreview').attr('src','images/'+data.book.image);
-      $('#bookviewmodal #bookimageviewpreview').attr('alt',data.book.title);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     });
   });
 
@@ -222,10 +164,7 @@
             success: function(data){
               delbtntr.remove();
               $('#bookdeletemodal').modal('hide');
-<<<<<<< HEAD
               toastr.success('Book deleted successfully.')
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
             },
             dataType: 'json'
           });

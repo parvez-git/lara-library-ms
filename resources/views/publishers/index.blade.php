@@ -16,10 +16,7 @@
                       <tr>
                         <th>SL.</th>
                         <th>Name</th>
-<<<<<<< HEAD
                         <th>Slug</th>
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -28,10 +25,7 @@
                       <tr>
                         <th scope="row">{{$publisher->id}}.</th>
                         <td>{{$publisher->name}}</td>
-<<<<<<< HEAD
                         <td>{{$publisher->slug}}</td>
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$publisher->id}}" id="publisherview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$publisher->id}}" id="publisheredit"><i class="fas fa-pencil-alt"></i></button>
@@ -67,10 +61,7 @@
     $('#publishereditmodal').modal('show');
     var publisher = $(this).data('id');
     $.get('publishers/'+publisher+'/edit', function(data){
-<<<<<<< HEAD
       $('#publishereditmodal form').attr('action','publishers/'+data.publisher.id);
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#publishereditmodal #name').val(data.publisher.name);
       $('#publishereditmodal #address').val(data.publisher.address);
     });

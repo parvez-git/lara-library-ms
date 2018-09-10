@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="createcountrymodal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -9,8 +8,8 @@
         </button>
       </div>
       <form class="" action="{{route('countries.store')}}" method="post">
+        @csrf
       <div class="modal-body">
-        {{ csrf_field() }}
 
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>

@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::latest()->with('role')->get();
 
         return view('users.index', compact('users'));
     }
@@ -22,7 +22,7 @@ class UsersController extends Controller
           'name'      => 'required|string|max:255',
           'email'     => 'required|string|email|max:255|unique:users',
           'password'  => 'required|string|min:6',
-          'role'      => 'required|string',
+          'role_id'   => 'required|numeric',
           'status'    => 'required|boolean'
         ]);
 
@@ -30,8 +30,7 @@ class UsersController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => bcrypt($request->password),
-            'role'      => $request->role,
-            'role_slug' => str_slug($request->role),
+            'role_id'   => $request->role_id,
             'status'    => $request->status
         ]);
 
@@ -57,16 +56,16 @@ class UsersController extends Controller
         $request->validate([
           'name'      => 'required|string|max:255',
           'email'     => 'required|string|email|max:255',
-          'role'      => 'required|string',
+          'role_id'   => 'required|numeric',
           'status'    => 'required|boolean'
         ]);
 
         $user = User::findOrFail($id);
 
-        $user->name   = $request->name;
-        $user->email  = $request->email;
-        $user->role   = $request->role;
-        $user->status = $request->status;
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->role_id  = $request->role_id;
+        $user->status   = $request->status;
         $user->save();
 
         return back()->with('success', 'User updated successfully.');

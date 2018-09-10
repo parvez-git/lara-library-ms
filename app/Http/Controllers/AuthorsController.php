@@ -13,18 +13,13 @@ class AuthorsController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
-        $authors = Author::latest()->with(['country','language'])->get();
-=======
-        $authors = Author::latest()->get();
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
+        $authors   = Author::latest()->with(['country','language'])->get();
         $countries = Country::latest()->get();
         $languages = Language::latest()->get();
         return view('authors.index', compact('authors','countries','languages'));
     }
 
 
-<<<<<<< HEAD
     public function store(Request $request)
     {
       $request->validate([
@@ -54,45 +49,25 @@ class AuthorsController extends Controller
       ]);
 
       return back()->with('success', 'Author added successfully.');
-=======
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function show($id)
     {
-<<<<<<< HEAD
       $author = Author::with(['country','language'])->findOrFail($id);
-=======
-      $author = Author::find($id);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       return response()->json(['author' => $author]);
     }
 
 
     public function edit($id)
     {
-<<<<<<< HEAD
         $author = Author::findOrFail($id);
-=======
-        $author = Author::find($id);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         return response()->json(['author' => $author]);
     }
 
 
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
       $request->validate([
           'name'        => 'required',
           'country_id'  => 'required',
@@ -127,15 +102,11 @@ class AuthorsController extends Controller
       $author->save();
 
       return back()->with('success', 'Author updated successfully.');
-=======
-        //
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function destroy($id)
     {
-<<<<<<< HEAD
       $author = Author::findOrFail($id);
 
       if(file_exists(public_path('images/') . $author->image)){
@@ -145,9 +116,5 @@ class AuthorsController extends Controller
       $author->delete();
 
       return response()->json(['author' => 'deleted']);
-=======
-      $author = Author::find($id)->delete();
-      return response()->json(['author' => $author]);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 }

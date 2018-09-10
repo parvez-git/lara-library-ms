@@ -3,10 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Auth;
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
 class CheckRole
 {
@@ -19,28 +15,15 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-<<<<<<< HEAD
-        if (Auth::check() && $request->user()->role != 'Admin') {
 
-          return redirect()->route('home');
+        $action = $request->route()->getAction();
+        $role   = isset($action['role']) ? $action['role'] : null;
 
-        } elseif (Auth::check() && $request->user()->role != 'Librarian') {
-
-          return redirect()->route('home');
-        }
-
-        return $next($request);
-    }
-
-=======
-        $actions = $request->route()->getAction();
-        $roles = isset($actions['roles']) ? $actions['roles'] : null;
-
-        if($request->user()->hasAnyRole($roles) || !$roles){
+        if($request->user()->hasRole($role) || !$role){
           return $next($request);
         }
 
         return response('Insuficient permission',401);
     }
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
+
 }

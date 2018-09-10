@@ -8,7 +8,6 @@ class Author extends Model
 {
     protected $fillable = [
       'name',
-<<<<<<< HEAD
       'slug',
       'bio',
       'country_id',
@@ -27,12 +26,4 @@ class Author extends Model
     {
         return $this->hasOne('App\Language','id','language_id');
     }
-=======
-      'bio',
-      'country',
-      'language',
-      'dateofbirth',
-      'image'
-    ];
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 }

@@ -16,7 +16,6 @@ class GenresController extends Controller
     }
 
 
-<<<<<<< HEAD
     public function store(Request $request)
     {
         $request->validate([
@@ -29,46 +28,25 @@ class GenresController extends Controller
         ]);
 
         return back()->with('success', 'Genre added successfully.');
-=======
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function show($id)
     {
-<<<<<<< HEAD
         $genre = Genre::findOrFail($id);
         return response()->json(['genre' => $genre]);
-=======
-      $genre = Genre::find($id);
-      return response()->json(['genre' => $genre]);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function edit($id)
     {
-<<<<<<< HEAD
         $genre = Genre::findOrFail($id);
-=======
-        $genre = Genre::find($id);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         return response()->json(['genre' => $genre]);
     }
 
 
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         $request->validate([
             'name'  => 'required'
         ]);
@@ -80,20 +58,12 @@ class GenresController extends Controller
         $genre->save();
 
         return back()->with('success', 'Genre updated successfully.');
-=======
-        //
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function destroy($id)
     {
-<<<<<<< HEAD
       $genre = Genre::findOrFail($id)->delete();
       return response()->json(['genre' => 'deleted']);
-=======
-      $genre = Genre::find($id)->delete();
-      return response()->json(['genre' => $genre]);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 }

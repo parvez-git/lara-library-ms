@@ -28,7 +28,7 @@
                         <th scope="row">{{$user->id}}.</th>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->role}}</td>
+                        <td>{{$user->role->name or null}}</td>
                         <td>
                           @if($user->status)
                             <span class="badge badge-success">Active</span>
@@ -73,7 +73,7 @@
       $('#editusermodal form').attr('action','users/'+data.user.id);
       $('#editusermodal #editname').val(data.user.name);
       $('#editusermodal #editemail').val(data.user.email);
-      $('#editusermodal #editrole').val(data.user.role);
+      $('#editusermodal #editrole').val(data.user.role_id);
       $('#editusermodal #editstatus').val(data.user.status);
     });
   });

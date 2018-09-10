@@ -9,13 +9,8 @@
         </button>
       </div>
       <form class="" action="{{route('publishers.store')}}" method="post">
-<<<<<<< HEAD
-        @csrf 
+        @csrf
       <div class="modal-body">
-=======
-      <div class="modal-body">
-        {{ csrf_field() }}
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>

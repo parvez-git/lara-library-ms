@@ -48,8 +48,8 @@
                       @endphp
                       <tr>
                         <th scope="row">{{$issuedbook->id}}.</th>
-                        <td>{{$issuedbook->book->title}} <em>by {{$issuedbook->user->name}}</em></td>
-                        <td>{{$issuedbook->user->name}}</td>
+                        <td>{{$issuedbook->book->title}} <em>by {{$issuedbook->user->name or null}}</em></td>
+                        <td>{{$issuedbook->user->name or null}}</td>
                         <td>{{$issuedbook->issued_date}}</td>
                         <td>{{$issuedbook->expiry_date}}</td>
                         <td>

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Validator;
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
 use App\Book;
 use App\Author;
@@ -20,7 +17,6 @@ class BooksController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
         $books = Book::latest()->with(['genres','author','publisher','language'])
                                ->withCount(['issuedbooks' => function($query) { $query->where('status', '!=', 'returned'); }])
                                ->get();
@@ -31,21 +27,12 @@ class BooksController extends Controller
         $publishers = Publisher::latest()->get();
         $genres     = Genre::latest()->get();
 
-=======
-        $books = Book::latest()->get();
-        $authors = Author::latest()->get();
-        $languages = Language::latest()->get();
-        $allseries = Series::latest()->get();
-        $publishers = Publisher::latest()->get();
-        $genres = Genre::latest()->get();
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         return view('books.index', compact('books','authors','languages','allseries','publishers','genres'));
     }
 
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         $request->validate([
             'title'           => 'required',
             'ISBN'            => 'required|unique:books',
@@ -90,40 +77,25 @@ class BooksController extends Controller
         $book->genres()->attach($request->genre);
 
         return back()->with('success', 'Book added successfully.');
-
-=======
-        Book::create($request->all());
-
-        return back();
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function show($id)
     {
-<<<<<<< HEAD
       $book = Book::with(['genres','author','publisher','language'])->findOrFail($id);
-=======
-      $book = Book::find($id);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       return response()->json(['book' => $book]);
     }
 
 
     public function edit($id)
     {
-<<<<<<< HEAD
         $book = Book::with('genres')->findOrFail($id);
-=======
-        $book = Book::find($id);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         return response()->json(['book' => $book]);
     }
 
 
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
       $request->validate([
           'title'           => 'required',
           'ISBN'            => 'required',
@@ -176,15 +148,11 @@ class BooksController extends Controller
       $book->genres()->sync($request->genre);
 
       return back()->with('success', 'Book updated successfully.');
-=======
-        //
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function destroy($id)
     {
-<<<<<<< HEAD
       $book = Book::findOrFail($id);
 
       if(file_exists(public_path('images/') . $book->image)){
@@ -195,9 +163,5 @@ class BooksController extends Controller
       $book->delete();
 
       return response()->json(['book' => 'deleted']);
-=======
-      $book = Book::find($id)->delete();
-      return response()->json(['book' => $book]);
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 }

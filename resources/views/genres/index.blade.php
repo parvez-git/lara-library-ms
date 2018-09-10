@@ -16,10 +16,7 @@
                       <tr>
                         <th>SL.</th>
                         <th>Name</th>
-<<<<<<< HEAD
                         <th>Slug</th>
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -28,10 +25,7 @@
                       <tr>
                         <th scope="row">{{$genre->id}}.</th>
                         <td>{{$genre->name}}</td>
-<<<<<<< HEAD
                         <td>{{$genre->slug}}</td>
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$genre->id}}" id="genreview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$genre->id}}" id="genreedit"><i class="fas fa-pencil-alt"></i></button>
@@ -67,10 +61,7 @@
     $('#genreeditmodal').modal('show');
     var genre = $(this).data('id');
     $.get('genres/'+genre+'/edit', function(data){
-<<<<<<< HEAD
       $('#genreeditmodal form').attr('action','genres/'+data.genre.id);
-=======
->>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#genreeditmodal #name').val(data.genre.name);
     });
   });

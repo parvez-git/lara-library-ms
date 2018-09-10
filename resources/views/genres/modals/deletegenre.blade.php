@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="genredeletemodal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

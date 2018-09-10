@@ -33,10 +33,10 @@
         <div class="form-group row">
             <label for="role" class="col-sm-2 col-form-label">Role</label>
             <div class="col-sm-10">
-              <select name="role" class="form-control" id="role">
-                <option>Member</option>
-                <option>Librarian</option>
-                <option>Admin</option>
+              <select name="role_id" class="form-control" id="role">
+                <option value="3">Member</option>
+                <option value="2">Librarian</option>
+                <option value="1">Admin</option>
               </select>
             </div>
         </div>
