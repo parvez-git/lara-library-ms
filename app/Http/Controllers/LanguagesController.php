@@ -16,6 +16,7 @@ class LanguagesController extends Controller
     }
 
 
+<<<<<<< HEAD
     public function store(Request $request)
     {
         $request->validate([
@@ -28,25 +29,45 @@ class LanguagesController extends Controller
         ]);
 
         return back()->with('success', 'Language added successfully.');
+=======
+    public function create()
+    {
+        //
+    }
+
+
+    public function store(Request $request)
+    {
+        //
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function show($id)
     {
+<<<<<<< HEAD
       $language = Language::findOrFail($id);
+=======
+      $language = Language::find($id);
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       return response()->json(['language' => $language]);
     }
 
 
     public function edit($id)
     {
+<<<<<<< HEAD
         $language = Language::findOrFail($id);
+=======
+        $language = Language::find($id);
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         return response()->json(['language' => $language]);
     }
 
 
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         $request->validate([
             'name'  => 'required'
         ]);
@@ -58,12 +79,19 @@ class LanguagesController extends Controller
         $language->save();
 
         return back()->with('success', 'Language updated successfully.');
+=======
+        //
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     }
 
 
     public function destroy($id)
     {
+<<<<<<< HEAD
       $language = Language::findOrFail($id)->delete();
+=======
+      $language = Language::find($id)->delete();
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       return response()->json(['language' => $language]);
     }
 }

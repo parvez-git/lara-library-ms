@@ -16,7 +16,10 @@
                       <tr>
                         <th>SL.</th>
                         <th>Name</th>
+<<<<<<< HEAD
                         <th>Slug</th>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -25,7 +28,10 @@
                       <tr>
                         <th scope="row">{{$country->id}}.</th>
                         <td>{{$country->name}}</td>
+<<<<<<< HEAD
                         <td>{{$country->slug}}</td>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$country->id}}" id="countryview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$country->id}}" id="countryedit"><i class="fas fa-pencil-alt"></i></button>
@@ -70,7 +76,10 @@
     $('#countryviewmodal').modal('show');
     var country = $(this).data('id');
     $.get('countries/'+country, function(data){
+<<<<<<< HEAD
       $('#countryviewmodal form').attr('action','countries/'+data.country.id);
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#countryviewmodal #name').html(data.country.name);
     });
   });
@@ -92,7 +101,10 @@
             success: function(data){
               delbtntr.remove();
               $('#countrydeletemodal').modal('hide');
+<<<<<<< HEAD
               toastr.success('Country deleted successfully.')
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
             },
             dataType: 'json'
           });

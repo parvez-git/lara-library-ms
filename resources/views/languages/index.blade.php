@@ -16,7 +16,10 @@
                       <tr>
                         <th>SL.</th>
                         <th>Name</th>
+<<<<<<< HEAD
                         <th>Slug</th>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -25,7 +28,10 @@
                       <tr>
                         <th scope="row">{{$language->id}}.</th>
                         <td>{{$language->name}}</td>
+<<<<<<< HEAD
                         <td>{{$language->slug}}</td>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$language->id}}" id="languageview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$language->id}}" id="languageedit"><i class="fas fa-pencil-alt"></i></button>
@@ -61,7 +67,10 @@
     $('#languageeditmodal').modal('show');
     var language = $(this).data('id');
     $.get('languages/'+language+'/edit', function(data){
+<<<<<<< HEAD
       $('#languageeditmodal form').attr('action','languages/'+data.language.id);
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#languageeditmodal #name').val(data.language.name);
     });
   });

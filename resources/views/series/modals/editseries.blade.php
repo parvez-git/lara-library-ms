@@ -8,10 +8,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+<<<<<<< HEAD
       <form class="" action="" method="post">
         @csrf
         @method('PUT')
       <div class="modal-body">
+=======
+      <form class="" action="{{route('series.store')}}" method="post">
+      <div class="modal-body">
+        {{ csrf_field() }}
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -22,7 +28,11 @@
 
       </div> <!-- /.modal-body -->
       <div class="modal-footer">
+<<<<<<< HEAD
         <button type="submit" class="btn btn-primary">Edit Series</button>
+=======
+        <button type="button" class="btn btn-primary">Edit Series</button>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </form>

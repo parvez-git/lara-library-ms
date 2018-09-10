@@ -28,8 +28,13 @@
                         <th scope="row">{{$author->id}}.</th>
                         <td><img src="images/{{$author->image}}" alt="{{$author->title}}" class="rounded-circle" width="50px"></td>
                         <td>{{$author->name}}</td>
+<<<<<<< HEAD
                         <td>{{$author->country->name}}</td>
                         <td>{{$author->language->name}}</td>
+=======
+                        <td>{{$author->country}}</td>
+                        <td>{{$author->language}}</td>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$author->id}}" id="authorview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$author->id}}" id="authoredit"><i class="fas fa-pencil-alt"></i></button>
@@ -65,18 +70,27 @@
     $('#authoreditmodal').modal('show');
     var author = $(this).data('id');
     $.get('authors/'+author+'/edit', function(data){
+<<<<<<< HEAD
       $('#authoreditmodal form').attr('action', 'authors/'+data.author.id);
       $('#authoreditmodal #name').val(data.author.name);
+=======
+      $('#authoreditmodal #name').val(data.author.name);
+      $('#authoreditmodal #country').val(data.author.country);
+      $('#authoreditmodal #language').val(data.author.language);
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#authoreditmodal #dateofbirth').val(data.author.dateofbirth);
       $('#authoreditmodal #bio').summernote('code', data.author.bio);
       $('#authoreditmodal #authorimageeditpreview').attr('src','images/'+data.author.image);
       $('#authoreditmodal #authorimageeditpreview').attr('alt',data.author.title);
+<<<<<<< HEAD
 
       $('#authoreditmodal #country').val(data.author.country_id);
       $('#authoreditmodal #country').trigger('change');
 
       $('#authoreditmodal #language').val(data.author.language_id);
       $('#authoreditmodal #language').trigger('change');
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
     });
   });
 
@@ -86,8 +100,13 @@
     var author = $(this).data('id');
     $.get('authors/'+author, function(data){
       $('#authorviewmodal #name').html(data.author.name);
+<<<<<<< HEAD
       $('#authorviewmodal #country').html(data.author.country.name);
       $('#authorviewmodal #language').html(data.author.language.name);
+=======
+      $('#authorviewmodal #country').html(data.author.country);
+      $('#authorviewmodal #language').html(data.author.language);
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#authorviewmodal #dateofbirth').html(data.author.dateofbirth);
       $('#authorviewmodal #bio').html(data.author.bio);
       $('#authorviewmodal #authorimageviewpreview').attr('src','images/'+data.author.image);
@@ -112,7 +131,10 @@
             success: function(data){
               delbtntr.remove();
               $('#authordeletemodal').modal('hide');
+<<<<<<< HEAD
               toastr.success('Author deleted successfully.')
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
             },
             dataType: 'json'
           });
@@ -126,7 +148,11 @@
     height: 200,
     focus: true
   });
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
   // IMAGE UPLOAD PREVIEW
   function readURL(input, previewid) {

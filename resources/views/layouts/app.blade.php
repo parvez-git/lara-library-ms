@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+<<<<<<< HEAD
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -20,6 +21,13 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+=======
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/fa-svg-with-js.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 </head>
 <body>
     <div id="app">
@@ -43,6 +51,10 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+<<<<<<< HEAD
+=======
+                            <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +63,11 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
+<<<<<<< HEAD
                                         document.getElementById('logout-form').submit();">
+=======
+                                                     document.getElementById('logout-form').submit();">
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                                         Logout
                                     </a>
 
@@ -70,6 +86,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-3">
+<<<<<<< HEAD
                           <div class="card card-default">
                               <div class="card-header">Dashboard</div>
 
@@ -97,6 +114,23 @@
                                   </div>
 
                               </div>
+=======
+                        <div class="card card-default">
+                            <div class="card-header">Dashboard</div>
+
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Books</li>
+                                    <li class="list-group-item"><a href="{{route('books.index')}}">All Book</a></li>
+                                    <li class="list-group-item"><a href="{{route('authors.index')}}">Authors</a></li>
+                                    <li class="list-group-item"><a href="{{route('countries.index')}}">Countries</a></li>
+                                    <li class="list-group-item"><a href="{{route('languages.index')}}">Languages</a></li>
+                                    <li class="list-group-item"><a href="{{route('series.index')}}">Series</a></li>
+                                    <li class="list-group-item"><a href="{{route('publishers.index')}}">Publishers</a></li>
+                                    <li class="list-group-item"><a href="{{route('genres.index')}}">Genres</a></li>
+                                </ul>
+                            </div>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         </div>
                     </div>
                     <div class="col-9">
@@ -111,10 +145,14 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/fontawesome-all.min.js') }}"></script>
     <script src="{{ asset('js/summernote.min.js') }}"></script>
+<<<<<<< HEAD
     <!-- <script src="{{ asset('js/datepicker.min.js') }}"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" charset="utf-8"></script>
+=======
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
     <script type="text/javascript">
 
@@ -126,6 +164,7 @@
           }
         });
 
+<<<<<<< HEAD
         // SELECT2
         $('.select2-single').select2({
             width: 'resolve',
@@ -152,6 +191,10 @@
         @if (session('success'))
             toastr.success('{{ session('success') }}')
         @endif
+=======
+        $('.select2-single').select2();
+        $('.select2-multiple').select2();
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 
       });
 

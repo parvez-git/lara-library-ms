@@ -16,7 +16,10 @@
                       <tr>
                         <th>SL.</th>
                         <th>Name</th>
+<<<<<<< HEAD
                         <th>Slug</th>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -25,7 +28,10 @@
                       <tr>
                         <th scope="row">{{$series->id}}.</th>
                         <td>{{$series->name}}</td>
+<<<<<<< HEAD
                         <td>{{$series->slug}}</td>
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
                         <td>
                           <button type="button" class="btn btn-sm btn-info" data-id="{{$series->id}}" id="seriesview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$series->id}}" id="seriesedit"><i class="fas fa-pencil-alt"></i></button>
@@ -61,7 +67,10 @@
     $('#serieseditmodal').modal('show');
     var series = $(this).data('id');
     $.get('series/'+series+'/edit', function(data){
+<<<<<<< HEAD
       $('#serieseditmodal form').attr('action','series/'+data.series.id);
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
       $('#serieseditmodal #name').val(data.series.name);
     });
   });
@@ -92,7 +101,10 @@
             success: function(data){
               delbtntr.remove();
               $('#seriesdeletemodal').modal('hide');
+<<<<<<< HEAD
               toastr.success('Series deleted successfully.')
+=======
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
             },
             dataType: 'json'
           });

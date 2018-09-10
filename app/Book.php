@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
+<<<<<<< HEAD
       'title', 'slug', 'subtitle', 'ISBN', 'series_id', 'publisher_id',
       'author_id', 'edition', 'published_year', 'pages', 'binding',
       'quantity', 'price', 'language_id', 'description', 'image',
@@ -37,4 +38,23 @@ class Book extends Model
     {
         return $this->hasMany('App\Issuedbook', 'book_id', 'id');
     }
+=======
+      'title',
+      'subtitle',
+      'ISBN',
+      'series',
+      'publisher',
+      'author_id',
+      'genre',
+      'edition',
+      'published_year',
+      'pages',
+      'binding',
+      'quantity',
+      'price',
+      'language',
+      'description',
+      'image',
+    ];
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
 }

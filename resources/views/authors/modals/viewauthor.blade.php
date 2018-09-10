@@ -14,6 +14,7 @@
             <div class="col-md-4">
               <img src="" alt="" id="authorimageviewpreview" class="img-fluid">
             </div>
+<<<<<<< HEAD
             <div class="col-md-8">
               <h3 id="name"></h3>
               <h5>Country: <strong id="country"></strong></h5>
@@ -21,6 +22,17 @@
               <h5>Date of Birth: <strong id="dateofbirth"></strong></h5>
               <p id="bio"></p>
             </div>
+=======
+            <div class="col-md-5">
+              <h3 id="name"></h3>
+              <h5>Country: <strong id="country"></strong></h5>
+              <p id="bio"></p>
+            </div>
+            <div class="col-md-3">
+              <h5>Language: <br><small id="language"></small></h5>
+              <h5>Date of Birth: <br><small id="dateofbirth"></small></h5>
+            </div>
+>>>>>>> 0e09d9c680d1937892a74e6be5b2caff71e5f16d
           </div>
         </div>
       </div>
