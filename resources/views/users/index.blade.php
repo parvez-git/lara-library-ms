@@ -54,6 +54,7 @@
 @include('users.modals.create')
 @include('users.modals.edit')
 @include('users.modals.delete')
+@include('users.modals.password')
 
 @endsection
 
@@ -64,6 +65,7 @@
   $(document).on('click', '#createuser', function(e){
     $('#createusermodal').modal('show');
   });
+
 
   // EDIT USER
   $(document).on('click', '#useredit', function(e){
@@ -102,6 +104,14 @@
           });
         });
       });
+  });
+
+
+  // CHANGE PASSWORD
+  $(document).on('click', '#changeuserpassword', function(e){
+      e.preventDefault();
+      $('#changepasswordusermodal').modal('show');
+      $('#changepasswordusermodal #user_id').val($(this).data('id'));
   });
 
 

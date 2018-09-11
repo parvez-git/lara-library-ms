@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
+use Hash;
+
 class UsersController extends Controller
 {
     public function index()
@@ -78,6 +80,32 @@ class UsersController extends Controller
       $user->delete();
 
       return response()->json(['user' => 'deleted']);
+    }
+
+
+    // CHANGE PASSWORD
+    public function changePassword(Request $request)
+    {
+        $id = $request->input('user_id');
+
+        if (!(Hash::check($request->get('currentpassword'), User::findOrFail($id)->password))) {
+            return back()->with('error', 'Your current password does not matches with the password you provided! Please try again.');
+        }
+
+        if(strcmp($request->get('currentpassword'), $request->get('newpassword')) == 0){
+            return back()->with('error', 'New Password cannot be same as your current password! Please choose a different password.');
+        }
+
+        $this->validate($request, [
+            'currentpassword' => 'required',
+            'newpassword' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = bcrypt($request->get('newpassword'));
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully.');
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CheckRole
 {
@@ -19,7 +20,7 @@ class CheckRole
         $action = $request->route()->getAction();
         $role   = isset($action['role']) ? $action['role'] : null;
 
-        if($request->user()->hasRole($role) || !$role){
+        if(Auth::check() && $request->user()->hasRole($role) || !$role){
           return $next($request);
         }
 

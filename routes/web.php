@@ -23,23 +23,29 @@ Route::post('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => ['web','role'], 'role' => 'Liberian'], function () {
 
-Route::resource('books','BooksController');
-Route::resource('authors','AuthorsController');
-Route::resource('countries','CountriesController');
-Route::resource('languages','LanguagesController');
-Route::resource('series','SeriesController');
-Route::resource('publishers','PublishersController');
-Route::resource('genres','GenresController');
+  Route::resource('issuedbooks','IssuedbooksController');
+  Route::get('issuedbooksusers-json','IssuedbooksController@issuedbooksUsers')->name('issuedbooksusers');
+  Route::post('issuedbookstatus-json','IssuedbooksController@issuedbookStatusUpdate')->name('issuedbookstatus');
 
-Route::resource('users','UsersController');
-Route::resource('issuedbooks','IssuedbooksController');
-Route::get('issuedbooksusers-json','IssuedbooksController@issuedbooksUsers')->name('issuedbooksusers');
-Route::post('issuedbookstatus-json','IssuedbooksController@issuedbookStatusUpdate')->name('issuedbookstatus');
+});
 
+Route::group(['middleware' => ['web','role'], 'role' => 'Admin'], function () {
 
-Route::group(['middleware' => ['web','role'], 'role'=>'Admin'], function () {
-  Route::get('/home1', function(){
-    echo 'Hello Admin';
-  });
+  Route::resource('books','BooksController');
+  Route::resource('authors','AuthorsController');
+  Route::resource('countries','CountriesController');
+  Route::resource('languages','LanguagesController');
+  Route::resource('series','SeriesController');
+  Route::resource('publishers','PublishersController');
+  Route::resource('genres','GenresController');
+
+  Route::resource('users','UsersController');
+  Route::post('users/changepassword','UsersController@changePassword')->name('users.changepassword');
+
+  Route::resource('issuedbooks','IssuedbooksController');
+  Route::get('issuedbooksusers-json','IssuedbooksController@issuedbooksUsers')->name('issuedbooksusers');
+  Route::post('issuedbookstatus-json','IssuedbooksController@issuedbookStatusUpdate')->name('issuedbookstatus');
+
 });

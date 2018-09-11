@@ -148,9 +148,14 @@
             @endforeach
         @endif
 
-        // SUCCESS
+        // SESSION SUCCESS
         @if (session('success'))
             toastr.success('{{ session('success') }}')
+        @endif
+
+        // SESSION ERROR
+        @if (session('error'))
+            toastr.error('{{ session('error') }}')
         @endif
 
       });
