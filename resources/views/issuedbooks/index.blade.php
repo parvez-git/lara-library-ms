@@ -23,7 +23,7 @@
                         <th>Returned Date</th>
                         <th>Penalty</th>
                         <th>Status</th>
-                        <th width="130px">Action</th>
+                        <th width="90px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@
                       @endphp
                       <tr>
                         <th scope="row">{{$issuedbook->id}}.</th>
-                        <td>{{$issuedbook->book->title}} <em>by {{$issuedbook->user->name or null}}</em></td>
+                        <td>{{$issuedbook->book->title}} <em>by {{$issuedbook->book->author->name}}</em></td>
                         <td>{{$issuedbook->user->name or null}}</td>
                         <td>{{$issuedbook->issued_date}}</td>
                         <td>{{$issuedbook->expiry_date}}</td>

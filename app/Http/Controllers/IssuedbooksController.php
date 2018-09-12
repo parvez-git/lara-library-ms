@@ -18,7 +18,9 @@ class IssuedbooksController extends Controller
 
         $users = User::get();
 
-        $issuedbooks = Issuedbook::latest()->with(['book','user'])->get();
+        $issuedbooks = Issuedbook::latest()->with(['user:id,name','book' => function($query){
+                                      $query->with('author:id,name');
+                                    }])->get();
 
         return view('issuedbooks.index', compact('issuedbooks','books','users'));
     }

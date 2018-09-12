@@ -1,3 +1,7 @@
+.dropdown-menu.show{
+  left: auto;
+  right: 0;
+}
 .dashboard-sidebar{
   overflow-y: scroll;
   height: 68vh;

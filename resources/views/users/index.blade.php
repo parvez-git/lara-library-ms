@@ -38,8 +38,11 @@
                         </td>
                         <td class="text-center">
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$user->id}}" id="useredit"><i class="fas fa-pencil-alt"></i></button>
-                          <button type="button" class="btn btn-sm btn-danger" data-id="{{$user->id}}" id="userdelete"><i class="fas fa-trash"></i></button>
                           <button type="button" class="btn btn-sm btn-dark" data-id="{{$user->id}}" id="changeuserpassword"><i class="fas fa-lock"></i></button>
+
+                          @if(auth()->user()->role->slug == 'admin')
+                            <button type="button" class="btn btn-sm btn-danger" data-id="{{$user->id}}" id="userdelete"><i class="fas fa-trash"></i></button>
+                          @endif
                         </td>
                       </tr>
                       @endforeach
@@ -76,6 +79,7 @@
       $('#editusermodal #editname').val(data.user.name);
       $('#editusermodal #editemail').val(data.user.email);
       $('#editusermodal #editrole').val(data.user.role_id);
+      $('#editusermodal #editrolevalue').val(data.user.role.name);
       $('#editusermodal #editstatus').val(data.user.status);
     });
   });

@@ -26,6 +26,7 @@
             </div>
         </div>
 
+        @if(auth()->user()->role->slug == 'admin')
         <div class="form-group row">
             <label for="editrole" class="col-sm-2 col-form-label">Role</label>
             <div class="col-sm-10">
@@ -36,7 +37,17 @@
               </select>
             </div>
         </div>
+        @else
         <div class="form-group row">
+            <label for="editrole" class="col-sm-2 col-form-label">Role</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="editrolevalue" readonly="true">
+              <input type="hidden" name="role_id" id="editrole">
+            </div>
+        </div>
+        @endif
+
+        <div class="form-group row" id="admin-status">
             <label for="editstatus" class="col-sm-2 col-form-label">Status</label>
             <div class="col-sm-10">
               <select name="status" class="form-control" id="editstatus">

@@ -35,8 +35,10 @@
             <div class="col-sm-10">
               <select name="role_id" class="form-control" id="role">
                 <option value="3">Member</option>
+                @if(auth()->user()->role->slug == 'admin')
                 <option value="2">Librarian</option>
                 <option value="1">Admin</option>
+                @endif
               </select>
             </div>
         </div>

@@ -21,15 +21,34 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(Role::class, 'id', 'role_id');
+      return $this->hasOne('App\Role', 'id', 'role_id');
     }
 
-    public function hasRole($role)
+
+    public function hasRole($roles)
     {
-        if ($this->role()->where('name',$role)->first()) {
-          return true;
+       if (is_array($roles))
+       {
+
+         foreach($roles as $need_role)
+         {
+           if($this->checkIfUserHasRole($need_role))
+           {
+             return true;
+           }
+         }
+
+        } else {
+          return $this->checkIfUserHasRole($roles);
         }
+
         return false;
+    }
+
+
+    private function checkIfUserHasRole($need_role)
+    {
+        return (strtolower($need_role) == strtolower($this->role->name)) ? true : null;
     }
 
 }

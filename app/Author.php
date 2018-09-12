@@ -26,4 +26,5 @@ class Author extends Model
     {
         return $this->hasOne('App\Language','id','language_id');
     }
+
 }

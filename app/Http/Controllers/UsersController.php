@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('role')->findOrFail($id);
         return response()->json(['user' => $user]);
     }
 
@@ -64,10 +64,21 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
+        // ROLE AND PERMISSION
+        if(Auth::user()->role_id == 2){
+          if($request->role_id == 3){
+            $status = $request->status;
+          }else{
+            $status = $user->status;
+          }
+        }else{
+          $status = $request->status;
+        }
+
         $user->name     = $request->name;
         $user->email    = $request->email;
         $user->role_id  = $request->role_id;
-        $user->status   = $request->status;
+        $user->status   = $status;
         $user->save();
 
         return back()->with('success', 'User updated successfully.');

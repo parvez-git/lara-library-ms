@@ -30,4 +30,5 @@ class Issuedbook extends Model
     {
         return $this->belongsTo(Book::class,'book_id','id');
     }
+
 }

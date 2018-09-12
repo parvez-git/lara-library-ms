@@ -22,8 +22,14 @@ Route::post('/login', 'LoginController@authenticate')->name('login');
 Route::post('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/nopermission', 'HomeController@nopermission')->name('nopermission');
 
-Route::group(['middleware' => ['web','role'], 'role' => 'Liberian'], function () {
+
+// BOTH LIBERIAN AND ADMIN
+Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']], function(){
+
+  Route::resource('users','UsersController');
+  Route::post('users/changepassword','UsersController@changePassword')->name('users.changepassword');
 
   Route::resource('issuedbooks','IssuedbooksController');
   Route::get('issuedbooksusers-json','IssuedbooksController@issuedbooksUsers')->name('issuedbooksusers');
@@ -31,7 +37,8 @@ Route::group(['middleware' => ['web','role'], 'role' => 'Liberian'], function ()
 
 });
 
-Route::group(['middleware' => ['web','role'], 'role' => 'Admin'], function () {
+// ONLY ADMIN
+Route::group(['middleware' => ['auth','roles'], 'roles' => ['admin']], function(){
 
   Route::resource('books','BooksController');
   Route::resource('authors','AuthorsController');
@@ -41,11 +48,12 @@ Route::group(['middleware' => ['web','role'], 'role' => 'Admin'], function () {
   Route::resource('publishers','PublishersController');
   Route::resource('genres','GenresController');
 
-  Route::resource('users','UsersController');
-  Route::post('users/changepassword','UsersController@changePassword')->name('users.changepassword');
+});
 
-  Route::resource('issuedbooks','IssuedbooksController');
-  Route::get('issuedbooksusers-json','IssuedbooksController@issuedbooksUsers')->name('issuedbooksusers');
-  Route::post('issuedbookstatus-json','IssuedbooksController@issuedbookStatusUpdate')->name('issuedbookstatus');
+
+// ONLY ADMIN
+Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','Liberian']], function(){
+
+  Route::resource('requestedbooks','RequestedbookController');
 
 });

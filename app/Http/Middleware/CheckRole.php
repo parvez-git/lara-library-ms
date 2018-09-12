@@ -14,17 +14,25 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
 
-        $action = $request->route()->getAction();
-        $role   = isset($action['role']) ? $action['role'] : null;
+      $roles = $this->getRequiredRoleForRoute($request->route());
 
-        if(Auth::check() && $request->user()->hasRole($role) || !$role){
+      if ($request->user()->hasRole($roles) || !$roles) {
           return $next($request);
         }
 
-        return response('Insuficient permission',401);
-    }
+        return redirect()->route('nopermission');
+      }
+
+      private function getRequiredRoleForRoute($route)
+      {
+        $actions = $route->getAction();
+
+        return isset($actions['roles']) ? $actions['roles'] : null;
+
+      }
 
 }
