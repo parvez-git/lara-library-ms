@@ -28,6 +28,14 @@ Route::get('/nopermission', 'HomeController@nopermission')->name('nopermission')
 // BOTH LIBERIAN AND ADMIN
 Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']], function(){
 
+  Route::resource('books','BooksController');
+  Route::resource('authors','AuthorsController');
+  Route::resource('countries','CountriesController');
+  Route::resource('languages','LanguagesController');
+  Route::resource('series','SeriesController');
+  Route::resource('publishers','PublishersController');
+  Route::resource('genres','GenresController');
+
   Route::resource('users','UsersController');
   Route::post('users/changepassword','UsersController@changePassword')->name('users.changepassword');
 
@@ -40,13 +48,7 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']]
 // ONLY ADMIN
 Route::group(['middleware' => ['auth','roles'], 'roles' => ['admin']], function(){
 
-  Route::resource('books','BooksController');
-  Route::resource('authors','AuthorsController');
-  Route::resource('countries','CountriesController');
-  Route::resource('languages','LanguagesController');
-  Route::resource('series','SeriesController');
-  Route::resource('publishers','PublishersController');
-  Route::resource('genres','GenresController');
+  Route::resource('settings','SettingController')->only(['index','store']);
 
 });
 

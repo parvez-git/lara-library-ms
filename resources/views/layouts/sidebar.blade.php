@@ -26,6 +26,10 @@
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('users.index') }}">All Users</a></li>
             </ul>
+
+            <ul class="list-group mt-3">
+                <li class="list-group-item"><a href="{{ route('settings.index') }}">Settings</a></li>
+            </ul>
         </div>
 
     </div>
