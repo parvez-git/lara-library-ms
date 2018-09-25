@@ -1,3 +1,10 @@
+.uppercase{
+    text-transform: uppercase;
+}
+.width100{
+    width: 100%;
+}
+
 .dropdown-menu.show{
   left: auto;
   right: 0;

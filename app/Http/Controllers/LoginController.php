@@ -20,7 +20,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
 
-            return redirect()->intended('home');
+            return redirect()->intended('dashboard');
         }
 
         return redirect()->route('login')->withErrors('Credentials do not match or user not active!');

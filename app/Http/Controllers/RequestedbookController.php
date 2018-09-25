@@ -22,7 +22,6 @@ class RequestedbookController extends Controller
         }else{
           $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->get();
         }
-        // return $requestedbooks;
 
         return view('requestedbooks.index', compact('requestedbooks','books','users'));
     }

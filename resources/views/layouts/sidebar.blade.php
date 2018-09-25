@@ -4,6 +4,8 @@
     <div class="card-body">
 
         <div class="dashboard-sidebar">
+
+            @if( auth()->user() && (auth()->user()->role->slug == 'admin' || auth()->user()->role->slug == 'liberian') )
             <ul class="list-group">
                 <li class="list-group-item">Books</li>
                 <li class="list-group-item"><a href="{{route('books.index')}}">All Book</a></li>
@@ -14,22 +16,26 @@
                 <li class="list-group-item"><a href="{{route('publishers.index')}}">Publishers</a></li>
                 <li class="list-group-item"><a href="{{route('genres.index')}}">Genres</a></li>
             </ul>
-
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('issuedbooks.index') }}">Issued Books</a></li>
             </ul>
+            @endif
 
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('requestedbooks.index') }}">Requeted Books</a></li>
             </ul>
 
+            @if( auth()->user() && (auth()->user()->role->slug == 'admin' || auth()->user()->role->slug == 'liberian') )
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('users.index') }}">All Users</a></li>
             </ul>
+            @endif
 
+            @if( auth()->user() && auth()->user()->role->slug == 'admin' )
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('settings.index') }}">Settings</a></li>
             </ul>
+            @endif
         </div>
 
     </div>

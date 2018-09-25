@@ -11,14 +11,19 @@
     <title>{{ config('app.name', 'Library Management System') }}</title>
 
     <!-- Styles -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link href="{{ asset('css/fa-svg-with-js.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/summernote.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -34,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav">
-                      <li><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
+                      <li><a class="nav-link" href="{{-- route('home') --}}">Home</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,9 +58,6 @@
                                         document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
-                                    <a class="dropdown-item" href="{{-- route('logout') --}}">
-                                        Change Password
-                                    </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -71,10 +73,7 @@
         <main class="py-4">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-3">
-                        @include('layouts.sidebar')
-                    </div>
-                    <div class="col-9">
+                    <div class="col-12">
                         @yield('content')
                     </div>
                 </div>
@@ -85,10 +84,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/fontawesome-all.min.js') }}"></script>
-    <script src="{{ asset('js/summernote.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" charset="utf-8"></script>
 
     <script type="text/javascript">
 
@@ -105,15 +101,6 @@
             width: 'resolve',
             placeholder: '-- Select --',
         });
-        $('.select2-multiple').select2({
-            placeholder: '-- Select --',
-        });
-
-        // BOOTSTRAP-DATEPICKER
-        $('.datepicker').datepicker({
-          format: 'yyyy-mm-dd'
-        });
-
 
         // ERROR
         @if ($errors->any())
