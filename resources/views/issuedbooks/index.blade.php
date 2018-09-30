@@ -21,7 +21,7 @@
                         <th>Expiry Date</th>
                         <th>Remain Days</th>
                         <th>Returned Date</th>
-                        <th>Penalty</th>
+                        <th>Penalty ({{ $currency }})</th>
                         <th>Status</th>
                         <th width="90px">Action</th>
                       </tr>
@@ -49,7 +49,7 @@
                       <tr>
                         <th scope="row">{{$issuedbook->id}}.</th>
                         <td>{{$issuedbook->book->title}} <em>by {{$issuedbook->book->author->name}}</em></td>
-                        <td>{{$issuedbook->user->name or null}}</td>
+                        <td>{{$issuedbook->user->name}}</td>
                         <td>{{$issuedbook->issued_date}}</td>
                         <td>{{$issuedbook->expiry_date}}</td>
                         <td>
@@ -67,7 +67,7 @@
                             {{$issuedbook->book->price}} +
                             {{$issuedbook->penalty_money}}
                           @else
-                            {{$issuedbook->penalty_money}}
+                             {{$issuedbook->penalty_money}}
                           @endif
                         </td>
 
@@ -92,6 +92,10 @@
                       @endforeach
                     </tbody>
                   </table>
+                </div>
+
+                <div class="card-foter m-auto">
+                    {{ $issuedbooks->links() }}
                 </div>
             </div>
         </div>

@@ -51,13 +51,15 @@
                           @endif
                         </td>
 
+                        {{-- NEED T0 FIX --}}
                         <td>
                           @if($requestedbook->issuedbook)
-                            <span class="badge badge-info">{{$requestedbook->issuedbook->status}}</span>
                             @if($requestedbook->issuedbook->penalty_money)
                               <span class="badge badge-warning">
                                 {{$requestedbook->issuedbook->penalty_money}}
                               </span>
+                            @else
+                              <span class="badge badge-info">{{$requestedbook->issuedbook->status}}</span>
                             @endif
                           @else
                               <span class="badge badge-danger">removed</span>
@@ -68,12 +70,21 @@
                           @if(auth()->user()->role_id == 2)
                             <button type="button" class="btn btn-sm btn-warning" data-id="{{$requestedbook->id}}" id="requestedbookedit"><i class="fas fa-pencil-alt"></i></button>
                           @endif
-                          <button type="button" class="btn btn-sm btn-danger" data-id="{{$requestedbook->id}}" id="requestedbookdelete"><i class="fas fa-trash"></i></button>
+
+                          @if(auth()->user()->role_id == 3 && $requestedbook->status == 'accepted')
+                              <button type="button" class="btn btn-sm btn-danger" disabled><i class="fas fa-trash"></i></button>
+                          @else
+                              <button type="button" class="btn btn-sm btn-danger" data-id="{{$requestedbook->id}}" id="requestedbookdelete"><i class="fas fa-trash"></i></button>
+                          @endif
                         </td>
                       </tr>
                       @endforeach
                     </tbody>
                   </table>
+                </div>
+
+                <div class="card-foter m-auto">
+                    {{ $requestedbooks->links() }}
                 </div>
             </div>
         </div>

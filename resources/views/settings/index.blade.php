@@ -7,7 +7,6 @@
             <div class="card card-default">
                 <div class="card-header">
                   <strong>Settings</strong>
-                  <button type="button" class="btn btn-sm btn-success float-right" id="changepassword"><i class="fas fa-lock mr-1"></i>change password</button>
                 </div>
 
                 <div class="card-body">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Requestedbook;
 use App\Issuedbook;
+use App\Setting;
 use App\Book;
 use App\User;
 use Auth;
@@ -14,13 +15,16 @@ class RequestedbookController extends Controller
 
     public function index()
     {
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
         $books = Book::with('author')->orderBy('title', 'asc')->get();
         $users = User::get();
 
         if(Auth::user()->role_id == 3){
-          $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->where('user_id',Auth::id())->get();
+          $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->where('user_id',Auth::id())->paginate($itemperpage);
         }else{
-          $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->get();
+          $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->paginate($itemperpage);
         }
 
         return view('requestedbooks.index', compact('requestedbooks','books','users'));

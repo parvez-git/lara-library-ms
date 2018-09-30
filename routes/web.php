@@ -52,4 +52,8 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','Liberian',
 
   Route::resource('requestedbooks','RequestedbookController');
 
+  Route::get('settings/profile','SettingController@profile')->name('profile');
+  Route::post('settings/profile','SettingController@profileUpdate')->name('profile.update');
+  Route::post('settings/changepassword','SettingController@changePassword')->name('profile.changepassword');
+
 });

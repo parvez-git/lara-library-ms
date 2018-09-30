@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 use App\Author;
 use App\Country;
 use App\Language;
+use App\Setting;
 
 class AuthorsController extends Controller
 {
 
     public function index()
     {
-        $authors   = Author::latest()->with(['country','language'])->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $authors   = Author::latest()->with(['country','language'])->paginate($itemperpage);
         $countries = Country::latest()->get();
         $languages = Language::latest()->get();
         return view('authors.index', compact('authors','countries','languages'));

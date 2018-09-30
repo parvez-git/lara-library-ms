@@ -11,15 +11,19 @@ use App\Language;
 use App\Series;
 use App\Publisher;
 use App\Genre;
+use App\Setting;
 
 class BooksController extends Controller
 {
 
     public function index()
     {
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
         $books = Book::latest()->with(['genres','author','publisher','language'])
                                ->withCount(['issuedbooks' => function($query) { $query->where('status', '!=', 'returned'); }])
-                               ->get();
+                               ->paginate($itemperpage);
 
         $authors    = Author::latest()->get();
         $languages  = Language::latest()->get();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Issuedbook;
 use App\Book;
 use App\User;
+use App\Setting;
 use Illuminate\Http\Request;
 
 class IssuedbooksController extends Controller
@@ -12,6 +13,10 @@ class IssuedbooksController extends Controller
 
     public function index()
     {
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+        $currency    = ($setting) ? $setting['currency'] : 'USD';
+
         $books = Book::with('author')
                      ->withCount(['issuedbooks'=>function($query){$query->where('status','!=','returned');}])
                      ->get();
@@ -20,9 +25,9 @@ class IssuedbooksController extends Controller
 
         $issuedbooks = Issuedbook::latest()->with(['user:id,name','book' => function($query){
                                       $query->with('author:id,name');
-                                    }])->get();
+                                    }])->paginate($itemperpage);
 
-        return view('issuedbooks.index', compact('issuedbooks','books','users'));
+        return view('issuedbooks.index', compact('issuedbooks','books','users','currency'));
     }
 
 

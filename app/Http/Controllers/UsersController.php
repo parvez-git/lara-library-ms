@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use App\User;
+use App\Setting;
 
 use Hash;
 
@@ -12,7 +14,14 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->with('role')->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        if(Auth::user()->role_id == 2){
+            $users = User::latest()->with('role')->where('role_id',3)->paginate($itemperpage);
+        } else {
+            $users = User::latest()->with('role')->where('role_id','!=',1)->paginate($itemperpage);
+        }
 
         return view('users.index', compact('users'));
     }
@@ -21,8 +30,8 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-          'name'      => 'required|string|max:255',
-          'email'     => 'required|string|email|max:255|unique:users',
+          'name'      => 'required|string|max:190',
+          'email'     => 'required|string|email|max:190|unique:users',
           'password'  => 'required|string|min:6',
           'role_id'   => 'required|numeric',
           'status'    => 'required|boolean'
@@ -56,24 +65,18 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-          'name'      => 'required|string|max:255',
-          'email'     => 'required|string|email|max:255',
+          'name'      => 'required|string|max:190',
+          'email'     => 'required|string|email|max:190',
           'role_id'   => 'required|numeric',
           'status'    => 'required|boolean'
         ]);
 
         $user = User::findOrFail($id);
 
-        // ROLE AND PERMISSION
-        if(Auth::user()->role_id == 2){
-          if($request->role_id == 3){
-            $status = $request->status;
-          }else{
-            $status = $user->status;
-          }
-        }else{
-          $status = $request->status;
-        }
+
+        // STATUS MANAGE ACCORDING TO ROLE
+        $status = User::manageStatus($request->role_id, $user->status, $request->status);
+
 
         $user->name     = $request->name;
         $user->email    = $request->email;
@@ -87,32 +90,21 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-      $user = User::findOrFail($id);
-      $user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
-      return response()->json(['user' => 'deleted']);
+        return response()->json(['user' => 'deleted']);
     }
 
 
     // CHANGE PASSWORD
     public function changePassword(Request $request)
     {
-        $id = $request->input('user_id');
-
-        if (!(Hash::check($request->get('currentpassword'), User::findOrFail($id)->password))) {
-            return back()->with('error', 'Your current password does not matches with the password you provided! Please try again.');
-        }
-
-        if(strcmp($request->get('currentpassword'), $request->get('newpassword')) == 0){
-            return back()->with('error', 'New Password cannot be same as your current password! Please choose a different password.');
-        }
-
         $this->validate($request, [
-            'currentpassword' => 'required',
             'newpassword' => 'required|string|min:6|confirmed',
         ]);
 
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($request->input('user_id'));
         $user->password = bcrypt($request->get('newpassword'));
         $user->save();
 

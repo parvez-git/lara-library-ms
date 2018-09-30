@@ -23,9 +23,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($authors as $author)
+                      @foreach($authors as $key => $author)
                       <tr>
-                        <th scope="row">{{$author->id}}.</th>
+                        <th scope="row">{{++$key}}.</th>
                         <td><img src="images/{{$author->image}}" alt="{{$author->title}}" class="rounded-circle" width="50px"></td>
                         <td>{{$author->name}}</td>
                         <td>{{$author->country->name}}</td>
@@ -40,6 +40,11 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div class="card-foter m-auto">
+                    {{ $authors->links() }}
+                </div>
+
             </div>
         </div>
     </div>

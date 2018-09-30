@@ -24,9 +24,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($books as $book)
+                      @foreach($books as $key => $book)
                       <tr>
-                        <th scope="row">{{$book->id}}.</th>
+                        <th scope="row">{{++$key}}.</th>
                         <td><img src="images/{{$book->image}}" alt="{{$book->title}}" class="rounded" width="80px"></td>
                         <td>
                           <h4>{{$book->title}}</h4>
@@ -52,6 +52,10 @@
                       @endforeach
                     </tbody>
                   </table>
+                </div>
+
+                <div class="card-foter m-auto">
+                    {{ $books->links() }}
                 </div>
             </div>
         </div>

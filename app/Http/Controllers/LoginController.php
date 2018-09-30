@@ -23,7 +23,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return redirect()->route('login')->withErrors('Credentials do not match or user not active!');
+        return redirect()->route('login')->withErrors('Credentials do not match or Account not active!');
     }
 
     public function logout()
