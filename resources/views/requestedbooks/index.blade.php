@@ -17,7 +17,7 @@
                         <th>SL.</th>
                         <th>Book</th>
 
-                        @if(auth()->user()->role_id == 2)
+                        @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
                           <th>Requested By</th>
                         @endif
 
@@ -34,7 +34,7 @@
                         <th scope="row">{{$requestedbook->id}}.</th>
                         <td>{{$requestedbook->book->title}}<em> by {{$requestedbook->book->author->name}}</em></td>
 
-                        @if(auth()->user()->role_id == 2)
+                        @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
                           <td>{{$requestedbook->user->name}} </td>
                         @endif
 
@@ -67,7 +67,7 @@
                         </td>
 
                         <td>
-                          @if(auth()->user()->role_id == 2)
+                          @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1)
                             <button type="button" class="btn btn-sm btn-warning" data-id="{{$requestedbook->id}}" id="requestedbookedit"><i class="fas fa-pencil-alt"></i></button>
                           @endif
 

@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Series;
+use App\Setting;
 
 class SeriesController extends Controller
 {
 
     public function index()
     {
-        $allseries = Series::latest()->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $allseries = Series::latest()->paginate($itemperpage);
         return view('series.index', compact('allseries'));
     }
 

@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Genre;
+use App\Setting;
 
 class GenresController extends Controller
 {
 
     public function index()
     {
-        $genres = Genre::latest()->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $genres = Genre::latest()->paginate($itemperpage);
         return view('genres.index', compact('genres'));
     }
 

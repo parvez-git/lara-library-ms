@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Country;
+use App\Setting;
 
 class CountriesController extends Controller
 {
 
     public function index()
     {
-        $countries = Country::latest()->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $countries = Country::latest()->paginate($itemperpage);
         return view('countries.index', compact('countries'));
     }
 

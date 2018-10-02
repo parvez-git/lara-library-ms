@@ -8,21 +8,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Library Management System') }}</title>
+    <title>{{ 'Library Management System' }}</title>
 
     <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"> --}}
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <style>
-        body {
-            font-family: 'Raleway', sans-serif;
-        }
+        body {font-family: 'Raleway', sans-serif;}
+        .dropdown-menu.show{left: auto;right: 0;}
     </style>
 </head>
 <body>
@@ -30,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <span>Library Management System</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,8 +37,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav">
-                      <li><a class="nav-link" href="{{-- route('home') --}}">Home</a></li>
+                      <li><a class="nav-link" href="{{ route('home') }}">Books</a></li>
+                      <li><a class="nav-link" href="{{ route('frontend.authors') }}">Authors</a></li>
                     </ul>
+
+                    <form class="form-inline m-auto">
+                        <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Search Book" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0 rounded-0" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -50,13 +54,16 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="far fa-user-circle mr-1"></i>{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <i class="fas fa-user mr-2"></i>Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                        Logout
+                                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

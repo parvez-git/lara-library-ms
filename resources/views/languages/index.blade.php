@@ -36,6 +36,10 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div class="card-foter m-auto">
+                    {{ $languages->links() }}
+                </div>
             </div>
         </div>
     </div>

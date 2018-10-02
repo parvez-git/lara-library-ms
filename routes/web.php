@@ -6,10 +6,12 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/book/{slug}', 'HomeController@show')->name('frontend.book.show');
+Route::get('/books/authors', 'HomeController@authors')->name('frontend.authors');
+Route::get('/books/author/{slug}', 'HomeController@authorsShow')->name('frontend.author.show');
 
+Route::get('/books/archive/{slug}', 'HomeController@archive')->name('frontend.archive');
 
 Route::get('/login', 'LoginController@login')->name('login');
 Route::post('/login', 'LoginController@authenticate')->name('login');

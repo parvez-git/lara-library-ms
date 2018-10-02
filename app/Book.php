@@ -33,6 +33,11 @@ class Book extends Model
         return $this->hasOne('App\Language','id','language_id');
     }
 
+    public function series()
+    {
+        return $this->hasOne('App\Series','id','series_id');
+    }
+
     public function issuedbooks()
     {
         return $this->hasMany('App\Issuedbook', 'book_id', 'id');

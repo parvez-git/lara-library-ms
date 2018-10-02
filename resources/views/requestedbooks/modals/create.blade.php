@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        @if(auth()->user()->role_id == 2)
+        @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 1 )
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">

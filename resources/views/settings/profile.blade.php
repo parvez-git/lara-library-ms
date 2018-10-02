@@ -34,8 +34,8 @@
                         <div class="col-sm-10">
                             <input type="hidden" name="status" id="status" value="{{ $user->status }}">
                             <div class="btn-group" role="group">
-                              <button type="button" class="btn btn-success" id="active">Active</button>
-                              <button type="button" class="btn btn-default" id="inactive">Inactive</button>
+                              <button type="button" class="btn btn-success" id="active" style="box-shadow:none;">Active</button>
+                              <button type="button" class="btn btn-default" id="inactive" style="box-shadow:none;">Inactive</button>
                             </div>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
 
         $(document).on('click', '#active', function(){
             $(this).addClass('btn btn-success');
-            $('#active').removeClass('btn btn-danger');
-            $('#active').addClass('btn btn-default');
+            $('#inactive').removeClass('btn btn-danger');
+            $('#inactive').addClass('btn btn-default');
             $('#status').val(1);
         });
 

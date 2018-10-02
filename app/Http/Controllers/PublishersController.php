@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Publisher;
+use App\Setting;
 
 class PublishersController extends Controller
 {
 
     public function index()
     {
-        $publishers = Publisher::latest()->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $publishers = Publisher::latest()->paginate($itemperpage);
         return view('publishers.index', compact('publishers'));
     }
 

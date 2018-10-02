@@ -49,6 +49,10 @@
                     </tbody>
                   </table>
                 </div>
+
+                <div class="card-foter m-auto">
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
     </div>

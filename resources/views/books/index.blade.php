@@ -145,7 +145,7 @@
 
       var genre_list = '';
       data.book.genres.forEach(function(element) {
-        genre_list += '<span class="badge badge-info">' + element.name + '</span>';
+        genre_list += '<span class="badge badge-info pt-1 mr-1">' + element.name + '</span>';
       });
       $('#bookviewmodal #genre').html(genre_list);
     });

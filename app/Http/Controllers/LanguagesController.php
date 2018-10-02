@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Language;
+use App\Setting;
 
 class LanguagesController extends Controller
 {
 
     public function index()
     {
-        $languages = Language::latest()->get();
+        $setting     = Setting::first();
+        $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+
+        $languages = Language::latest()->paginate($itemperpage);
         return view('languages.index', compact('languages'));
     }
 

@@ -1,18 +1,26 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card card-default">
-                <div class="card-header">Home</div>
+<div class="container-fluid">
+    <div class="row">
 
-                <div class="card-body">
-
-
-                    Home content goes here..
+        @foreach($books as $book)
+            <div class="col-2">
+                <div class="card">
+                    <a href="{{ route('frontend.book.show',$book->slug) }}">
+                        <img class="card-img-top" src="{{asset("images/$book->image")}}" alt="{{$book->title}}">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text">{{$book->title}} ({{$book->published_year}})</p>
+                    </div>
                 </div>
             </div>
+        @endforeach
+
+    </div>
+    <div class="row mt-5">
+        <div class="m-auto">
+            {{ $books->links() }}
         </div>
     </div>
 </div>
