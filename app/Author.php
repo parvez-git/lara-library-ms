@@ -16,11 +16,6 @@ class Author extends Model
       'image'
     ];
 
-    public function book()
-    {
-        return $this->belongsTo('App\Book');
-    }
-
     public function country()
     {
         return $this->hasOne('App\Country','id','country_id');

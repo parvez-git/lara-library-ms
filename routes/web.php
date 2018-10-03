@@ -12,6 +12,7 @@ Route::get('/books/authors', 'HomeController@authors')->name('frontend.authors')
 Route::get('/books/author/{slug}', 'HomeController@authorsShow')->name('frontend.author.show');
 
 Route::get('/books/archive/{slug}', 'HomeController@archive')->name('frontend.archive');
+Route::get('/books/search', 'HomeController@search')->name('frontend.search');
 
 Route::get('/login', 'LoginController@login')->name('login');
 Route::post('/login', 'LoginController@authenticate')->name('login');
@@ -54,8 +55,8 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','Liberian',
 
   Route::resource('requestedbooks','RequestedbookController');
 
-  Route::get('settings/profile','SettingController@profile')->name('profile');
-  Route::post('settings/profile','SettingController@profileUpdate')->name('profile.update');
-  Route::post('settings/changepassword','SettingController@changePassword')->name('profile.changepassword');
+  Route::get('profile','ProfileController@profile')->name('profile');
+  Route::post('profile','ProfileController@profileUpdate')->name('profile.update');
+  Route::post('changepassword','ProfileController@changePassword')->name('profile.changepassword');
 
 });

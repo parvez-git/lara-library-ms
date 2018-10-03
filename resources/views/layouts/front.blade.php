@@ -21,6 +21,11 @@
     <style>
         body {font-family: 'Raleway', sans-serif;}
         .dropdown-menu.show{left: auto;right: 0;}
+        .select2-container--default .select2-selection--single{border-radius:0;padding-top:6px;}
+        .select2-container .select2-selection--single{height:40px;}
+        .authbooktitle a{color: black;font-size: 12px;text-align: center;text-shadow: 1px 1px 0px #ccc;}
+        .authbooktitle{display:none;}
+        .authbook:hover .authbooktitle{display:block;background-color:rgba(255, 255, 255, 0.8);}
     </style>
 </head>
 <body>
@@ -28,7 +33,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <span>Library Management System</span>
+                    <span>Library MS</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,22 +46,23 @@
                       <li><a class="nav-link" href="{{ route('frontend.authors') }}">Authors</a></li>
                     </ul>
 
-                    <form class="form-inline m-auto">
-                        <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Search Book" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0 rounded-0" type="submit"><i class="fas fa-search"></i></button>
+                    <!-- Middle Searchbar Of Navbar -->
+                    <form class="form-inline ml-auto" action="{{ route('frontend.search') }}" method="get">
+                        <input class="form-control mr-sm-2 rounded-0" type="search" name="book" placeholder="Search Book" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0 rounded-0" type="submit"><i class="fas fa-search"></i></button>
                     </form>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-4">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                            <li><a class="btn btn-outline-info rounded-0" href="{{ route('login') }}">Login</a></li>
                         @else
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="dropdown-toggle btn btn-outline-info rounded-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="far fa-user-circle mr-1"></i>{{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         <i class="fas fa-user mr-2"></i>Profile
                                     </a>

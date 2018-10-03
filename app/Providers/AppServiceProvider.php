@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 
-use App\Setting;
+use App\Publisher;
+use App\Author;
+use App\Genre;
+use App\Book;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,9 +18,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $setting = Setting::first();
-
-        View::share('itemperpage', $setting['per_page']);
+        view()->composer('frontend.search', function($view) {
+            $view->with('publishers', Publisher::select('id','name')->get());
+            $view->with('authors', Author::select('id','name')->get());
+            $view->with('genres', Genre::select('id','name','slug')->get());
+            $view->with('publishedyears', Book::select('published_year')->distinct()->get());
+        });
     }
 
     /**

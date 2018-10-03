@@ -18,7 +18,7 @@
                         <img class="card-img-top" src="{{ asset("images/$author->image") }}" alt="{{$author->name}}">
                     </a>
                     <div class="card-body">
-                        <p class="card-text text-center">{{$author->name}} <br> ({{$author->name}})</p>
+                        <p class="card-text text-center">{{$author->name}} <br> ({{$author->country->name}})</p>
                     </div>
                 </div>
             </div>
