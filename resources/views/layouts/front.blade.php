@@ -25,6 +25,7 @@
         .select2-container .select2-selection--single{height:40px;}
         .authbooktitle a{color: black;font-size: 12px;text-align: center;text-shadow: 1px 1px 0px #ccc;}
         .authbooktitle{display:none;}
+        .authbook{transition: all 0.8s ease;}
         .authbook:hover .authbooktitle{display:block;background-color:rgba(255, 255, 255, 0.8);}
     </style>
 </head>

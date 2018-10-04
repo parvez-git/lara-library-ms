@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 
             @include('layouts.navbar')
-            
+
         </nav>
 
         <main class="py-4">

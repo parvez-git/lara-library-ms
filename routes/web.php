@@ -54,6 +54,8 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']]
 Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','Liberian','Admin']], function(){
 
   Route::resource('requestedbooks','RequestedbookController');
+  Route::resource('posts','PostController');
+  Route::resource('categories','CategoryController')->except('create');
 
   Route::get('profile','ProfileController@profile')->name('profile');
   Route::post('profile','ProfileController@profileUpdate')->name('profile.update');

@@ -8,8 +8,13 @@
             <h4>
                 <i class="fas fa-search mr-2"></i>SEARCHING FOR:
                 @isset($_GET['book'])
-                    {{-- strtoupper($_GET['book']) --}}
+                    {{ strtoupper($_GET['book']) }}
                 @endisset
+
+                @isset($_GET['publisherid']) PUBLISHER @endisset
+                @isset($_GET['authorid']) AUTHOR @endisset
+                @isset($_GET['genreid']) GENRES @endisset
+                    
                 @if(isset($_GET['yearfrom']) && isset( $_GET['yearto']))
                     YEAR: {{ $_GET['yearfrom'] }} - {{ $_GET['yearto'] }}
                 @endif

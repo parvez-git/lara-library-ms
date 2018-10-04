@@ -182,6 +182,7 @@
     height: 200,
     focus: true
   });
+  $('.note-popover').css({'display': 'none'});
 
 
   // IMAGE UPLOAD PREVIEW

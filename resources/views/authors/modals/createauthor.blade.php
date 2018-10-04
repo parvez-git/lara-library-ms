@@ -55,7 +55,7 @@
               <div class="form-group row">
                   <label for="bio" class="col-sm-2 col-form-label">Biography</label>
                   <div class="col-sm-10">
-                      <textarea name="bio" class="form-control" id="bio" placeholder="Biography"></textarea>
+                      <textarea name="bio" class="form-control" id="createauthorbio" placeholder="Biography"></textarea>
                   </div>
               </div>
 

@@ -31,6 +31,12 @@
             </ul>
             @endif
 
+            <ul class="list-group mt-3">
+                <li class="list-group-item">Blog</li>
+                <li class="list-group-item"><a href="{{route('posts.index')}}">All Posts</a></li>
+                <li class="list-group-item"><a href="{{route('categories.index')}}">Categories</a></li>
+            </ul>
+
             @if( auth()->user() && auth()->user()->role->slug == 'admin' )
             <ul class="list-group mt-3">
                 <li class="list-group-item"><a href="{{ route('settings.index') }}">Settings</a></li>

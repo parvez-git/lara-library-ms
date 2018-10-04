@@ -73,7 +73,7 @@
       $('#authoreditmodal form').attr('action', 'authors/'+data.author.id);
       $('#authoreditmodal #name').val(data.author.name);
       $('#authoreditmodal #dateofbirth').val(data.author.dateofbirth);
-      $('#authoreditmodal #bio').summernote('code', data.author.bio);
+      $('#editauthorbio').summernote('code', data.author.bio);
       $('#authoreditmodal #authorimageeditpreview').attr('src','images/'+data.author.image);
       $('#authoreditmodal #authorimageeditpreview').attr('alt',data.author.title);
 
@@ -94,7 +94,7 @@
       $('#authorviewmodal #country').html(data.author.country.name);
       $('#authorviewmodal #language').html(data.author.language.name);
       $('#authorviewmodal #dateofbirth').html(data.author.dateofbirth);
-      $('#authorviewmodal #bio').html(data.author.bio);
+      $('#viewauthorbio').html(data.author.bio);
       $('#authorviewmodal #authorimageviewpreview').attr('src','images/'+data.author.image);
       $('#authorviewmodal #authorimageviewpreview').attr('alt',data.author.title);
     });
@@ -126,11 +126,14 @@
   });
 
   // SUMMERNOTE EDITOR
-  $('#createauthormodal #bio').summernote({
-    placeholder: 'author description goes here..',
-    height: 200,
-    focus: true
+  $('#createauthorbio').summernote({
+     placeholder: 'Author description goes here..',
+     height: 200,
+     focus: true,
+     dialogsInBody: true,
   });
+  $('.note-popover').css({'display': 'none'});
+
 
   // IMAGE UPLOAD PREVIEW
   function readURL(input, previewid) {

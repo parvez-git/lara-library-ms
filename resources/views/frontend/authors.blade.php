@@ -5,7 +5,7 @@
 
     <div class="pt-4 pb-3 mb-4">
         <div class="container-fluid">
-            <h3><i class="fas fa-list-ul mr-2"></i>AUTHOR LIST</h3>
+            <h3><i class="far fa-user mr-2"></i>AUTHOR LIST</h3>
         </div>
     </div>
 
