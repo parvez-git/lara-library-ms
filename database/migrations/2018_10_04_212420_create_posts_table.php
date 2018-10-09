@@ -18,10 +18,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->mediumText('short_content');
+            $table->mediumText('short_content')->nullable();
             $table->boolean('status');
             $table->date('published_on');
             $table->string('image');
+            $table->integer('user_id')->unsigned();
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();

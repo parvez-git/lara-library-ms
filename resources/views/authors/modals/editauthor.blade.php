@@ -73,7 +73,7 @@
         </div> <!-- /.container -->
       </div> <!-- /.modal-body -->
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Edit author</button>
+        <button type="submit" class="btn btn-primary">Update</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </form>

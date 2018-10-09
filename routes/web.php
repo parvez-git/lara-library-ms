@@ -14,6 +14,8 @@ Route::get('/books/author/{slug}', 'HomeController@authorsShow')->name('frontend
 Route::get('/books/archive/{slug}', 'HomeController@archive')->name('frontend.archive');
 Route::get('/books/search', 'HomeController@search')->name('frontend.search');
 
+Route::get('/blog', 'HomeController@blog')->name('frontend.blog');
+
 Route::get('/login', 'LoginController@login')->name('login');
 Route::post('/login', 'LoginController@authenticate')->name('login');
 Route::post('/logout', 'LoginController@logout')->name('logout');

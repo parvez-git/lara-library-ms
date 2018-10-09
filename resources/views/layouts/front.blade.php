@@ -27,6 +27,7 @@
         .authbooktitle{display:none;}
         .authbook{transition: all 0.8s ease;}
         .authbook:hover .authbooktitle{display:block;background-color:rgba(255, 255, 255, 0.8);}
+        .w-47{width:47%;margin:auto 1% 1% 1%;border-radius:0;}
     </style>
 </head>
 <body>
@@ -45,16 +46,17 @@
                     <ul class="navbar-nav">
                       <li><a class="nav-link" href="{{ route('home') }}">Books</a></li>
                       <li><a class="nav-link" href="{{ route('frontend.authors') }}">Authors</a></li>
+                      <li><a class="nav-link" href="{{ route('frontend.blog') }}">Blog</a></li>
                     </ul>
 
                     <!-- Middle Searchbar Of Navbar -->
-                    <form class="form-inline ml-auto" action="{{ route('frontend.search') }}" method="get">
+                    <form class="form-inline ml-auto mr-4" action="{{ route('frontend.search') }}" method="get">
                         <input class="form-control mr-sm-2 rounded-0" type="search" name="book" placeholder="Search Book" aria-label="Search">
                         <button class="btn btn-outline-info my-2 my-sm-0 rounded-0" type="submit"><i class="fas fa-search"></i></button>
                     </form>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-4">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="btn btn-outline-info rounded-0" href="{{ route('login') }}">Login</a></li>

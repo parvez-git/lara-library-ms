@@ -27,7 +27,6 @@
                         <td>{{$category->name}}</td>
                         <td>{{$category->slug}}</td>
                         <td>
-                          <button type="button" class="btn btn-sm btn-info" data-id="{{$category->id}}" id="categoryview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$category->id}}" id="categoryedit"><i class="fas fa-pencil-alt"></i></button>
                           <button type="button" class="btn btn-sm btn-danger" data-id="{{$category->id}}" id="categorydelete"><i class="fas fa-trash"></i></button>
                         </td>
@@ -46,9 +45,8 @@
 </div>
 
 @include('blogs.categories.modals.create')
-{{-- @include('categories.modals.editcategory')
-@include('categories.modals.viewcategory')
-@include('categories.modals.deletecategory') --}}
+@include('blogs.categories.modals.edit')
+@include('blogs.categories.modals.delete')
 
 @endsection
 
@@ -57,29 +55,20 @@
 <script type="text/javascript">
 
   $(document).on('click', '#createcategory', function(e){
-    $('#createcategorymodal').modal('show');
+      $('#createcategorymodal').modal('show');
   });
 
-  // EDIT category
+  // EDIT
   $(document).on('click', '#categoryedit', function(e){
     $('#categoryeditmodal').modal('show');
     var category = $(this).data('id');
     $.get('categories/'+category+'/edit', function(data){
-      $('#categoryeditmodal #name').val(data.category.name);
+        $('#categoryeditmodal form').attr('action', 'categories/'+data.category.id);
+        $('#categoryeditmodal #name').val(data.category.name);
     });
   });
 
-  // VIEW category
-  $(document).on('click', '#categoryview', function(e){
-    $('#categoryviewmodal').modal('show');
-    var category = $(this).data('id');
-    $.get('categories/'+category, function(data){
-      $('#categoryviewmodal form').attr('action','categories/'+data.category.id);
-      $('#categoryviewmodal #name').html(data.category.name);
-    });
-  });
-
-  // DELETE category
+  // DELETE
   $(document).on('click', '#categorydelete', function(e){
     e.preventDefault();
     var delbtntr = $(this).parents('tr');

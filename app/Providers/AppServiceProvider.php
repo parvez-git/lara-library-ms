@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Publisher;
+use App\Language;
 use App\Author;
 use App\Genre;
 use App\Book;
@@ -19,10 +20,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('frontend.search', function($view) {
-            $view->with('publishers', Publisher::select('id','name')->get());
-            $view->with('authors', Author::select('id','name')->get());
-            $view->with('genres', Genre::select('id','name','slug')->get());
             $view->with('publishedyears', Book::select('published_year')->distinct()->get());
+        });
+
+        view()->composer(['frontend.archive','frontend.search'], function($view) {
+            $view->with('publishers', Publisher::has('book')->select('id','name','slug')->get());
+            $view->with('authors', Author::has('book')->select('id','name','slug')->get());
+            $view->with('genres', Genre::has('books')->select('id','name','slug')->get());
+            $view->with('languages', Language::has('book')->select('id','name','slug')->get());
         });
     }
 

@@ -10,10 +10,12 @@ use App\Publisher;
 use App\Language;
 use App\Country;
 use App\Series;
+use App\Post;
 use App\Setting;
 
 class HomeController extends Controller
 {
+    
     public function index()
     {
         $setting = Setting::first();
@@ -29,6 +31,17 @@ class HomeController extends Controller
         $book = Book::where('slug', $slug)->first();
 
         return view('frontend.show', compact('book'));
+    }
+
+
+    public function blog()
+    {
+        $posts = Post::latest()->with(['user','categories'])
+                                ->where('status', 1)
+                                ->whereDate('published_on', '>=', date('yyyy-mm-dd') )
+                                ->paginate(10);
+
+        return view('frontend.blog', compact('posts'));
     }
 
 

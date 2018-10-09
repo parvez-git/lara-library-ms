@@ -14,7 +14,7 @@
                 @isset($_GET['publisherid']) PUBLISHER @endisset
                 @isset($_GET['authorid']) AUTHOR @endisset
                 @isset($_GET['genreid']) GENRES @endisset
-                    
+
                 @if(isset($_GET['yearfrom']) && isset( $_GET['yearto']))
                     YEAR: {{ $_GET['yearfrom'] }} - {{ $_GET['yearto'] }}
                 @endif
@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <label><small><strong>Published Year</strong></small></label>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <select class="form-control select2-single" name="yearfrom">
                                          <option selected disabled>-- FROM --</option>
                                          @foreach($publishedyears as $books)
@@ -97,7 +97,7 @@
                                          @endforeach
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <select class="form-control select2-single" name="yearto">
                                          <option selected disabled>-- TO --</option>
                                          @foreach($publishedyears as $books)

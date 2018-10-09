@@ -26,4 +26,8 @@ class Author extends Model
         return $this->hasOne('App\Language','id','language_id');
     }
 
+    public function book()
+    {
+        return $this->belongsTo(Book::class,'id','author_id');
+    }
 }

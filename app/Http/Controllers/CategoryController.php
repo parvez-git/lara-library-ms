@@ -33,24 +33,38 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        //
+        $category = Category::findOrFail($category->id);
+        return response()->json(['category' => $category]);
     }
 
 
     public function edit(Category $category)
     {
-        //
+        $category = Category::findOrFail($category->id);
+        return response()->json(['category' => $category]);
     }
 
 
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+          'name' => 'required|max:190',
+        ]);
+
+        $category = Category::findOrFail($category->id);
+
+        $category->update([
+          'name' => $request->name,
+          'slug' => str_slug($request->name)
+        ]);
+
+        return back()->with('success', 'Category update successfully.');
     }
 
 
     public function destroy(Category $category)
     {
-        //
+        Category::findOrFail($category->id)->delete();
+        return response()->json(['category' => 'deleted']);
     }
 }

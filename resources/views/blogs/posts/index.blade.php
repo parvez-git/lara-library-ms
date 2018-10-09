@@ -7,7 +7,9 @@
             <div class="card card-default">
                 <div class="card-header">
                   <strong>All Posts</strong>
-                  <button type="button" class="btn btn-sm btn-success float-right" id="createpost"><i class="fas fa-plus-circle mr-1"></i>create post</button>
+                  <button type="button" class="btn btn-sm btn-success float-right" id="createpost">
+                      <i class="fas fa-plus-circle mr-1"></i>create post
+                  </button>
                 </div>
 
                 <div class="card-body">
@@ -17,9 +19,11 @@
                         <th>SL.</th>
                         <th>Image</th>
                         <th>Title</th>
+                        <th>Posted By</th>
+                        <th>Category</th>
                         <th>Status</th>
-                        <th>Published</th>
-                        <th>Action</th>
+                        <th>Published On</th>
+                        <th width="90px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -28,10 +32,23 @@
                         <th scope="row">{{++$key}}.</th>
                         <td><img src="images/{{$post->image}}" alt="{{$post->title}}" class="rounded" width="50px"></td>
                         <td>{{$post->title}}</td>
-                        <td>{{$post->status}}</td>
+                        <td>{{$post->user->name}}</td>
+                        <td>
+                            @foreach($post->categories as $category)
+                                <span class="badge badge-pill badge-secondary pt-1">
+                                    {{ $category->name }}
+                                </span>
+                            @endforeach
+                        </td>
+                        <td>
+                            @if($post->status)
+                                <span class="badge badge-success p-1">Published</span>
+                            @else
+                                <span class="badge badge-warning p-1">Pending</span>
+                            @endif
+                        </td>
                         <td>{{$post->published_on}}</td>
                         <td>
-                          <button type="button" class="btn btn-sm btn-info" data-id="{{$post->id}}" id="postview"><i class="fas fa-eye"></i></button>
                           <button type="button" class="btn btn-sm btn-warning" data-id="{{$post->id}}" id="postedit"><i class="fas fa-pencil-alt"></i></button>
                           <button type="button" class="btn btn-sm btn-danger" data-id="{{$post->id}}" id="postdelete"><i class="fas fa-trash"></i></button>
                         </td>
@@ -51,9 +68,8 @@
 </div>
 
 @include('blogs.posts.modals.create')
-{{-- @include('posts.modals.editpost')
-@include('posts.modals.viewpost')
-@include('posts.modals.deletepost') --}}
+@include('blogs.posts.modals.edit')
+@include('blogs.posts.modals.delete')
 
 @endsection
 
@@ -71,34 +87,37 @@
     var post = $(this).data('id');
     $.get('posts/'+post+'/edit', function(data){
       $('#posteditmodal form').attr('action', 'posts/'+data.post.id);
-      $('#posteditmodal #name').val(data.post.name);
-      $('#posteditmodal #dateofbirth').val(data.post.dateofbirth);
-      $('#editpostbio').summernote('code', data.post.bio);
+      $('#posteditmodal #edittitle').val(data.post.title);
+      $('#posteditmodal #editpublishedon').val(data.post.published_on);
+      $('#editpostcontent').summernote('code', data.post.content);
       $('#posteditmodal #postimageeditpreview').attr('src','images/'+data.post.image);
       $('#posteditmodal #postimageeditpreview').attr('alt',data.post.title);
 
-      $('#posteditmodal #country').val(data.post.country_id);
-      $('#posteditmodal #country').trigger('change');
+      $('#posteditmodal #editstatus').val(data.post.status);
+      $('#posteditmodal #editstatus').trigger('change');
 
-      $('#posteditmodal #language').val(data.post.language_id);
-      $('#posteditmodal #language').trigger('change');
+      $('#posteditmodal #editshortcontent').val(data.post.short_content);
+      $('#posteditmodal #editmetatitle').val(data.post.meta_title);
+      $('#posteditmodal #editmetakeywords').val(data.post.meta_keywords);
+      $('#posteditmodal #editmetadescription').val(data.post.meta_description);
+
+      var category_arr = [];
+        data.post.categories.forEach(function(element) {
+        category_arr.push(element.id)
+      });
+      $('#posteditmodal #editcategory').val(category_arr);
+      $('#posteditmodal #editcategory').trigger('change');
     });
   });
 
   // VIEW POST
-  $(document).on('click', '#postview', function(e){
-    $('#postviewmodal').modal('show');
-    var post = $(this).data('id');
-    $.get('posts/'+post, function(data){
-      $('#postviewmodal #name').html(data.post.name);
-      $('#postviewmodal #country').html(data.post.country.name);
-      $('#postviewmodal #language').html(data.post.language.name);
-      $('#postviewmodal #dateofbirth').html(data.post.dateofbirth);
-      $('#viewpostbio').html(data.post.bio);
-      $('#postviewmodal #postimageviewpreview').attr('src','images/'+data.post.image);
-      $('#postviewmodal #postimageviewpreview').attr('alt',data.post.title);
-    });
-  });
+  // $(document).on('click', '#postview', function(e){
+  //   $('#postviewmodal').modal('show');
+  //   var post = $(this).data('id');
+  //   $.get('posts/'+post, function(data){
+  //
+  //   });
+  // });
 
   // DELETE POST
   $(document).on('click', '#postdelete', function(e){
@@ -106,7 +125,7 @@
     var delbtntr = $(this).parents('tr');
     var post = $(this).data('id');
     $.get('posts/'+post, function(data){
-        $('#postdeletemodal #name').html(data.post.name);
+        $('#postdeletemodal #name').html(data.post.title);
         $('#postdeletemodal button.btn-danger').attr('id','deletepost-'+data.post.id);
         $('#postdeletemodal').modal('show');
         $('#deletepost-'+data.post.id).on('click', function(e){
