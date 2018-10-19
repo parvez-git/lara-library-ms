@@ -17,6 +17,7 @@ class RequestedbookController extends Controller
     {
         $setting     = Setting::first();
         $itemperpage = ($setting) ? (int)$setting['per_page'] : 10;
+        $currency    = ($setting) ? $setting['currency'] : 'USD';
 
         $books = Book::with('author')->orderBy('title', 'asc')->get();
         $users = User::get();
@@ -27,7 +28,7 @@ class RequestedbookController extends Controller
           $requestedbooks = Requestedbook::latest()->with(['book','issuedbook','user'])->paginate($itemperpage);
         }
 
-        return view('requestedbooks.index', compact('requestedbooks','books','users'));
+        return view('requestedbooks.index', compact('requestedbooks','books','users','currency'));
     }
 
 

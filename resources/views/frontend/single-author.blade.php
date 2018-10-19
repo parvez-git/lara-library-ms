@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-md-5">
-            
+
             <div class="row">
                 @foreach($authorbooks as $key => $book)
                     @if($key < 6)
@@ -52,7 +52,7 @@
             @if(count($authorbooks) > 6)
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-white w-100 rounded-0">MORE BOOK</button>
+                    <a href="{{ route('frontend.search') }}?authorid={{$author->id}}" class="btn btn-outline-info w-100 rounded-0">MORE BOOK</a>
                 </div>
             </div>
             @endif

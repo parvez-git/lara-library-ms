@@ -15,20 +15,35 @@ use App\Setting;
 
 class HomeController extends Controller
 {
-    
+    private $homeperpage;
+    private $blogperpage;
+    private $sidebarpage;
+
+    public function __construct() {
+
+        $setting = Setting::firstOrFail();
+
+        $homeperpage = ($setting) ? (int)$setting['home_per_page'] : 18;
+        $blogperpage = ($setting) ? (int)$setting['blog_per_page'] : 10;
+        $sidebarpage = ($setting) ? (int)$setting['withsidebar_per_page'] : 12;
+
+        $this->homeperpage = $homeperpage;
+        $this->blogperpage = $blogperpage;
+        $this->sidebarpage = $sidebarpage;
+    }
+
     public function index()
     {
-        $setting = Setting::first();
-        $perpage = ($setting) ? (int)$setting['per_page'] : 18;
+        $page = $this->homeperpage;
 
-        $books = Book::latest()->select('title','slug','image','published_year')->paginate($perpage);
+        $books = Book::latest()->select('title','slug','image','published_year')->paginate($page);
 
         return view('index', compact('books'));
     }
 
     public function show($slug)
     {
-        $book = Book::where('slug', $slug)->first();
+        $book = Book::where('slug', $slug)->firstOrFail();
 
         return view('frontend.show', compact('book'));
     }
@@ -36,10 +51,12 @@ class HomeController extends Controller
 
     public function blog()
     {
+        $page = $this->blogperpage;
+
         $posts = Post::latest()->with(['user','categories'])
                                 ->where('status', 1)
                                 ->whereDate('published_on', '>=', date('yyyy-mm-dd') )
-                                ->paginate(10);
+                                ->paginate($page);
 
         return view('frontend.blog', compact('posts'));
     }
@@ -47,16 +64,15 @@ class HomeController extends Controller
 
     public function authors()
     {
-        $setting = Setting::first();
-        $perpage = ($setting) ? (int)$setting['per_page'] : 18;
+        $page = $this->homeperpage;
 
         $type = request('type');
         $id   = request('id');
 
         if( isset($type) && isset($id) && $type = 'country'){
-            $authors = Author::latest()->with('country')->where('country_id',$id)->paginate($perpage);
+            $authors = Author::latest()->with('country')->where('country_id',$id)->paginate($page);
         } else {
-            $authors = Author::latest()->with('country')->paginate($perpage);
+            $authors = Author::latest()->with('country')->paginate($page);
         }
 
         return view('frontend.authors', compact('authors'));
@@ -64,7 +80,7 @@ class HomeController extends Controller
 
     public function authorsShow($slug)
     {
-        $author      = Author::where('slug', $slug)->first();
+        $author      = Author::where('slug', $slug)->firstOrFail();
         $authorbooks = Book::latest()->where('author_id', $author->id)->get();
 
         return view('frontend.single-author', compact('author','authorbooks'));
@@ -73,31 +89,36 @@ class HomeController extends Controller
 
     public function archive($slug)
     {
+        $page = $this->sidebarpage;
+
         $type = request('type');
 
         switch ($type) {
             case 'genres':
-                $title = Genre::with('books')->where('slug',$slug)->first()->name .' '.$type;
-                $book  = Genre::with('books')->where('slug',$slug)->get();
-                $books = $book[0]['books'];
+                $title = Genre::with('books')->where('slug',$slug)->firstOrFail()->name .' '.$type;
+                $books = Book::whereHas('genres', function($query) { return $query->where('slug', '=', request('slug')); })->paginate($page);
+                $books->withPath($slug.'?type=genres');
                 break;
 
             case 'publisher':
-                $title = Publisher::where('slug',$slug)->first()->name .' '.$type;
-                $book  = Publisher::where('slug',$slug)->first();
-                $books = Book::where('publisher_id',$book->id)->get();
+                $title = Publisher::where('slug',$slug)->firstOrFail()->name .' '.$type;
+                $book  = Publisher::where('slug',$slug)->firstOrFail();
+                $books = Book::where('publisher_id',$book->id)->paginate($page);
+                $books->withPath($slug.'?type=publisher');
                 break;
 
             case 'language':
-                $title = Language::where('slug',$slug)->first()->name .' '.$type;
-                $book  = Language::where('slug',$slug)->first();
-                $books = Book::where('language_id',$book->id)->get();
+                $title = Language::where('slug',$slug)->firstOrFail()->name .' '.$type;
+                $book  = Language::where('slug',$slug)->firstOrFail();
+                $books = Book::where('language_id',$book->id)->paginate($page);
+                $books->withPath($slug.'?type=language');
                 break;
 
             case 'series':
-                $title = Series::where('slug',$slug)->first()->name .' '.$type;
-                $book  = Series::where('slug',$slug)->first();
-                $books = Book::where('series_id',$book->id)->get();
+                $title = Series::where('slug',$slug)->firstOrFail()->name .' '.$type;
+                $book  = Series::where('slug',$slug)->firstOrFail();
+                $books = Book::where('series_id',$book->id)->paginate($page);
+                $books->withPath($slug.'?type=series');
                 break;
 
             default:
@@ -112,6 +133,8 @@ class HomeController extends Controller
 
     public function search()
     {
+        $page = $this->sidebarpage;
+
         $booktitle   = request('book');
         $publisherid = (int)request('publisherid');
         $authorid    = (int)request('authorid');
@@ -138,7 +161,7 @@ class HomeController extends Controller
                     ->OrWhereHas('genres', function($query) {
                         return $query->where('genre_id', '=', request('genreid'));
                     })
-                    ->paginate(10);
+                    ->paginate($page);
 
         return view('frontend.search', compact('books'));
     }

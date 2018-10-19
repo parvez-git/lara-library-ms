@@ -30,7 +30,7 @@
                     @endforeach
                 </span>
                 <div class="content-body">
-                    <p>{!! str_limit( $post->content, 500, ' ...') !!}</p>
+                    <p>{!! $post->content !!}</p>
                 </div>
             </div>
         </div>

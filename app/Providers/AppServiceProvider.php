@@ -9,6 +9,7 @@ use App\Language;
 use App\Author;
 use App\Genre;
 use App\Book;
+use App\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $setting   = Setting::firstOrFail();
+        $site_name = ($setting) ? $setting['site_name'] : 'Library';
+        view()->share('sitename',$site_name);
+
         view()->composer('frontend.search', function($view) {
             $view->with('publishedyears', Book::select('published_year')->distinct()->get());
         });

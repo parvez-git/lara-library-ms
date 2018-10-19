@@ -20,6 +20,9 @@ class CreateSettingsTable extends Migration
             $table->string('phone');
             $table->integer('per_page');
             $table->string('currency');
+            $table->integer('home_per_page');
+            $table->integer('blog_per_page');
+            $table->integer('withsidebar_per_page');
             $table->timestamps();
         });
     }

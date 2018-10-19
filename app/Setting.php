@@ -11,6 +11,9 @@ class Setting extends Model
       'email',
       'phone',
       'per_page',
-      'currency'
+      'currency',
+      'home_per_page',
+      'blog_per_page',
+      'withsidebar_per_page'
     ];
 }

@@ -23,11 +23,16 @@
         .dropdown-menu.show{left: auto;right: 0;}
         .select2-container--default .select2-selection--single{border-radius:0;padding-top:6px;}
         .select2-container .select2-selection--single{height:40px;}
-        .authbooktitle a{color: black;font-size: 12px;text-align: center;text-shadow: 1px 1px 0px #ccc;}
+        .authbooktitle a{color: black;text-align: center;text-shadow: 1px 1px 0px #ccc;}
         .authbooktitle{display:none;}
         .authbook{transition: all 0.8s ease;}
         .authbook:hover .authbooktitle{display:block;background-color:rgba(255, 255, 255, 0.8);}
         .w-47{width:47%;margin:auto 1% 1% 1%;border-radius:0;}
+
+        .page-item .page-link {color:#222222;}
+        .page-item.active .page-link {background-color:#25a2b7;border-color:#25a2b7;}
+        .page-item:first-child .page-link {border-top-left-radius:0;border-bottom-left-radius:0;}
+        .page-item:last-child .page-link {border-top-right-radius:0;border-bottom-right-radius:0;}
     </style>
 </head>
 <body>
@@ -35,7 +40,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <span>Library MS</span>
+                    <span>{{ $sitename }}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

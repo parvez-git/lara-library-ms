@@ -19,7 +19,7 @@
                     YEAR: {{ $_GET['yearfrom'] }} - {{ $_GET['yearto'] }}
                 @endif
 
-                <span class="float-right">{{ count($books) }} BOOKS FOUND</span>
+                <span class="float-right">{{ $books->total() }} BOOKS FOUND</span>
             </h4>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <div class="row">
                 @foreach($books as $book)
                     <div class="col-3">
-                        <div class="card">
+                        <div class="card mb-4">
                             <a href="{{ route('frontend.book.show',$book->slug) }}">
                                 <img class="card-img-top" src="{{asset("images/$book->image")}}" alt="{{$book->title}}">
                             </a>
@@ -41,6 +41,20 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="row mt-5">
+                <div class="m-auto">
+                    {{ $books->appends([
+                        'book'          => Request::get('book'),
+                        'publisherid'   => Request::get('publisherid'),
+                        'authorid'      => Request::get('authorid'),
+                        'yearfrom'      => Request::get('yearfrom'),
+                        'yearto'        => Request::get('yearto'),
+                        'genreid'       => Request::get('genreid')
+                        ])->links()
+                    }}
+                </div>
             </div>
         </div>
 

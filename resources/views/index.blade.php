@@ -6,7 +6,7 @@
 
         @foreach($books as $book)
             <div class="col-2">
-                <div class="card">
+                <div class="card mb-4">
                     <a href="{{ route('frontend.book.show',$book->slug) }}">
                         <img class="card-img-top" src="{{asset("images/$book->image")}}" alt="{{$book->title}}">
                     </a>

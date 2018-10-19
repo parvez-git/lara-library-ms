@@ -5,7 +5,14 @@
 
     <div class="pt-4 pb-3 mb-4">
         <div class="container-fluid">
-            <h3><i class="fas fa-archive mr-3"></i>ARCHIVE: {{ strtoupper($title) }} </h3>
+            <h4>
+                <i class="fas fa-archive mr-3"></i>ARCHIVE: {{ strtoupper($title) }}
+                <span class="float-right">
+                    @if($books)
+                        {{ $books->total() }} BOOKS FOUND
+                    @endif
+                </span>
+            </h4>
         </div>
     </div>
 
@@ -16,7 +23,7 @@
                     @foreach($books as $book)
                         @if($book)
                             <div class="col-3">
-                                <div class="card">
+                                <div class="card mb-4">
                                     <a href="{{ route('frontend.book.show',$book->slug) }}">
                                         <img class="card-img-top" src="{{asset("images/$book->image")}}" alt="{{$book->title}}">
                                     </a>
@@ -36,6 +43,14 @@
                         </div>
                     </div>
                 @endif
+            </div>
+
+            <div class="row mt-5">
+                <div class="m-auto">
+                    @if($books)
+                        {{ $books->links() }}
+                    @endif
+                </div>
             </div>
         </div>
 

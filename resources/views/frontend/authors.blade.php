@@ -13,7 +13,7 @@
 
         @foreach($authors as $author)
             <div class="col-2">
-                <div class="card">
+                <div class="card mb-4">
                     <a href="{{ route('frontend.author.show',$author->slug) }}">
                         <img class="card-img-top" src="{{ asset("images/$author->image") }}" alt="{{$author->name}}">
                     </a>

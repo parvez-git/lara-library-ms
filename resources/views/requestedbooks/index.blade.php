@@ -51,18 +51,24 @@
                           @endif
                         </td>
 
-                        {{-- NEED T0 FIX --}}
                         <td>
                           @if($requestedbook->issuedbook)
-                            @if($requestedbook->issuedbook->penalty_money)
-                              <span class="badge badge-warning">
-                                {{$requestedbook->issuedbook->penalty_money}}
-                              </span>
-                            @else
+                            @if($requestedbook->issuedbook->penalty_money || $requestedbook->status == 'accepted')
                               <span class="badge badge-info">{{$requestedbook->issuedbook->status}}</span>
+                              <span class="badge badge-light">{{$requestedbook->issuedbook->penalty_money}} {{$currency}}</span>
+                            @elseif($requestedbook->status == 'pending')
+                              <span class="badge badge-warning">Pending</span>
+                            @elseif($requestedbook->status == 'rejected')
+                              <span class="badge badge-danger">Rejected</span>
                             @endif
                           @else
-                              <span class="badge badge-danger">removed</span>
+                              @if($requestedbook->status == 'pending')
+                                <span class="badge badge-warning">Pending</span>
+                              @elseif($requestedbook->status == 'rejected')
+                                <span class="badge badge-danger">Rejected</span>
+                              @else
+                                <span class="badge badge-danger">removed</span>
+                              @endif
                           @endif
                         </td>
 

@@ -32,8 +32,8 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['admin']], function(
 
 });
 
-// BOTH LIBERIAN AND ADMIN
-Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']], function(){
+// BOTH LIBRARIAN AND ADMIN
+Route::group(['middleware' => ['auth','roles'], 'roles' => ['librarian','admin']], function(){
 
   Route::resource('books','BooksController');
   Route::resource('authors','AuthorsController');
@@ -52,8 +52,8 @@ Route::group(['middleware' => ['auth','roles'], 'roles' => ['liberian','admin']]
 
 });
 
-// MEMBER AND LIBERIAN AND ADMIN
-Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','Liberian','Admin']], function(){
+// MEMBER AND LIBRARIAN AND ADMIN
+Route::group(['middleware' => ['auth','roles'], 'roles' => ['Member','librarian','Admin']], function(){
 
   Route::resource('requestedbooks','RequestedbookController');
   Route::resource('posts','PostController');

@@ -11,7 +11,7 @@ use App\Genre;
 use App\Language;
 use App\Publisher;
 use App\Series;
-use DB;
+use App\Post;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,26 +27,35 @@ class DatabaseSeeder extends Seeder
             'name'            => 'Mr. Admin',
             'email'           => 'admin@admin.com',
             'password'        => bcrypt('123456'),
-            'role'            => 'Admin',
-            'role_slug'       => 'admin',
-            'remember_token'  => str_random(10)
+            'role_id'         => 1,
+            'status'          => 1,
+            'remember_token'  => str_random(10),
+            'created_at'      => date("Y-m-d H:i:s")
           ],
           [
             'name'            => 'Mr. Librarian',
             'email'           => 'librarian@librarian.com',
             'password'        => bcrypt('123456'),
-            'role'            => 'Librarian',
-            'role_slug'       => 'librarian',
-            'remember_token'  => str_random(10)
+            'role_id'         => 2,
+            'status'          => 1,
+            'remember_token'  => str_random(10),
+            'created_at'      => date("Y-m-d H:i:s")
           ],
           [
             'name'            => 'Mr. Member',
             'email'           => 'member@member.com',
             'password'        => bcrypt('123456'),
-            'role'            => 'Member',
-            'role_slug'       => 'member',
-            'remember_token'  => str_random(10)
+            'role_id'         => 3,
+            'status'          => 1,
+            'remember_token'  => str_random(10),
+            'created_at'      => date("Y-m-d H:i:s")
           ]
+        ]);
+
+        Role::insert([
+            ['name' => 'Admin',     'slug' => 'admin'],
+            ['name' => 'Librarian', 'slug' => 'librarian'],
+            ['name' => 'Member',    'slug' => 'member']
         ]);
 
         Author::insert([
@@ -137,33 +146,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Country::insert([
-          ['name' => 'Bangladesh', 'slug' => 'bangladesh'],
-          ['name' => 'India', 'slug' => 'india'],
-          ['name' => 'USA', 'slug' => 'usa']
+          ['name' => 'Bangladesh',  'slug' => 'bangladesh'],
+          ['name' => 'India',       'slug' => 'india'],
+          ['name' => 'USA',         'slug' => 'usa']
         ]);
 
         Genre::insert([
-          ['name' => 'Drama', 'slug' => 'drama'],
+          ['name' => 'Drama',   'slug' => 'drama'],
           ['name' => 'Romance', 'slug' => 'romance'],
-          ['name' => 'Action', 'slug' => 'action']
+          ['name' => 'Action',  'slug' => 'action']
         ]);
 
         Language::insert([
           ['name' => 'English', 'slug' => 'english'],
-          ['name' => 'Bangla', 'slug' => 'bangla'],
-          ['name' => 'Japan', 'slug' => 'japan']
+          ['name' => 'Bangla',  'slug' => 'bangla'],
+          ['name' => 'Japan',   'slug' => 'japan']
         ]);
 
         Publisher::insert([
           ['name' => 'Alloy Entertainment', 'slug' => 'alloy-entertainment', 'address' => 'New York, USA'],
-          ['name' => 'Vasha Chitro', 'slug' => 'vasha-chitro', 'address' => 'Dhaka, Bangladesh'],
-          ['name' => 'Japan Publisher', 'slug' => 'japan publisher', 'address' => 'Japan']
+          ['name' => 'Vasha Chitro',        'slug' => 'vasha-chitro',        'address' => 'Dhaka, Bangladesh'],
+          ['name' => 'Japan Publisher',     'slug' => 'japan-publisher',     'address' => 'Japan']
         ]);
 
         Series::insert([
-          ['name' => 'Harry Porter', 'slug' => 'harry-porter'],
-          ['name' => 'The God Father', 'slug' => 'the-god-father'],
-          ['name' => 'Twilight', 'slug' => 'twilight']
+          ['name' => 'Harry Porter',    'slug' => 'harry-porter'],
+          ['name' => 'The God Father',  'slug' => 'the-god-father'],
+          ['name' => 'Twilight',        'slug' => 'twilight']
         ]);
 
         DB::table('book_genre')->insert([
@@ -173,6 +182,40 @@ class DatabaseSeeder extends Seeder
           ['book_id' => 1, 'genre_id' => 1],
           ['book_id' => 1, 'genre_id' => 3],
           ['book_id' => 2, 'genre_id' => 3]
+        ]);
+
+        Post::insert([
+          [
+            'title'         => 'Blog Title 1',
+            'slug'          => 'post-1',
+            'content'       => 'Blog post content goes here..',
+            'status'        => 1,
+            'published_on'  => date("Y-m-d"),
+            'image'         => 'post.jpg',
+            'user_id'       => 1,
+            'created_at'    => date("Y-m-d H:i:s")
+          ],
+          [
+            'title'         => 'Blog Title 2',
+            'slug'          => 'post-2',
+            'content'       => 'Blog post content goes here..',
+            'status'        => 1,
+            'published_on'  => date("Y-m-d"),
+            'image'         => 'post.jpg',
+            'user_id'       => 1,
+            'created_at'    => date("Y-m-d H:i:s")
+          ],
+          [
+            'title'         => 'Blog Title 3',
+            'slug'          => 'post-3',
+            'content'       => 'Blog post content goes here..',
+            'status'        => 1,
+            'published_on'  => date("Y-m-d"),
+            'image'         => 'post.jpg',
+            'user_id'       => 1,
+            'created_at'    => date("Y-m-d H:i:s")
+          ]
+
         ]);
 
     }
