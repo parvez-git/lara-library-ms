@@ -12,6 +12,7 @@ use App\Language;
 use App\Publisher;
 use App\Series;
 use App\Post;
+use App\Setting;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Setting::insert([
+          [
+            'site_name' => 'LIB MS',
+            'email'     => 'admin@admin.com'
+          ]
+        ]);
+
         User::insert([
           [
             'name'            => 'Mr. Admin',

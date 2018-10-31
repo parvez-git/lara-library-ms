@@ -17,12 +17,12 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('site_name');
             $table->string('email');
-            $table->string('phone');
-            $table->integer('per_page');
-            $table->string('currency');
-            $table->integer('home_per_page');
-            $table->integer('blog_per_page');
-            $table->integer('withsidebar_per_page');
+            $table->string('phone')->nullable();
+            $table->integer('per_page')->default(0);
+            $table->string('currency')->nullable();
+            $table->integer('home_per_page')->default(0);
+            $table->integer('blog_per_page')->default(0);
+            $table->integer('withsidebar_per_page')->default(0);
             $table->timestamps();
         });
     }

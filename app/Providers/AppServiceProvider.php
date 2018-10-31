@@ -20,20 +20,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $setting   = Setting::firstOrFail();
-        $site_name = ($setting) ? $setting['site_name'] : 'Library';
-        view()->share('sitename',$site_name);
+        if (! $this->app->runningInConsole()) {
 
-        view()->composer('frontend.search', function($view) {
-            $view->with('publishedyears', Book::select('published_year')->distinct()->get());
-        });
+            $setting   = Setting::firstOrFail();
+            $site_name = ($setting) ? $setting['site_name'] : 'Library';
+            view()->share('sitename',$site_name);
 
-        view()->composer(['frontend.archive','frontend.search'], function($view) {
-            $view->with('publishers', Publisher::has('book')->select('id','name','slug')->get());
-            $view->with('authors', Author::has('book')->select('id','name','slug')->get());
-            $view->with('genres', Genre::has('books')->select('id','name','slug')->get());
-            $view->with('languages', Language::has('book')->select('id','name','slug')->get());
-        });
+            view()->composer('frontend.search', function($view) {
+                $view->with('publishedyears', Book::select('published_year')->distinct()->get());
+            });
+
+            view()->composer(['frontend.archive','frontend.search'], function($view) {
+                $view->with('publishers', Publisher::has('book')->select('id','name','slug')->get());
+                $view->with('authors', Author::has('book')->select('id','name','slug')->get());
+                $view->with('genres', Genre::has('books')->select('id','name','slug')->get());
+                $view->with('languages', Language::has('book')->select('id','name','slug')->get());
+            });
+            
+        }
     }
 
     /**

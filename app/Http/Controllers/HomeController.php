@@ -23,9 +23,9 @@ class HomeController extends Controller
 
         $setting = Setting::firstOrFail();
 
-        $homeperpage = ($setting) ? (int)$setting['home_per_page'] : 18;
-        $blogperpage = ($setting) ? (int)$setting['blog_per_page'] : 10;
-        $sidebarpage = ($setting) ? (int)$setting['withsidebar_per_page'] : 12;
+        $homeperpage = ($setting['home_per_page']) ? (int)$setting['home_per_page'] : 18;
+        $blogperpage = ($setting['blog_per_page']) ? (int)$setting['blog_per_page'] : 10;
+        $sidebarpage = ($setting['withsidebar_per_page']) ? (int)$setting['withsidebar_per_page'] : 12;
 
         $this->homeperpage = $homeperpage;
         $this->blogperpage = $blogperpage;
